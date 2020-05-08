@@ -33,6 +33,12 @@
     <string name="search_place_go">Search place go</string>
     <string name="search_place_arrival">Search place arrival</string>
 
+    <string name="error_from">Please select place start.</string>
+    <string name="error_to">Please select place target.</string>
+    <string name="error_date_go">Please select date go.</string>
+    <string name="error_date_arrival">Please select date arrival.</string>
+    <string name="error_num">Please select number of passenger.</string>
+
     <string name="english" translatable="false">English</string>
     <string name="vietnamese" translatable="false">Vietnamese</string>
     <string name="japanese" translatable="false">Japanese</string>

@@ -1,14 +1,17 @@
 package com.vuvanduong.datvemaybay.model;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -22,6 +25,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.vuvanduong.datvemaybay.R;
+import com.vuvanduong.datvemaybay.config.Constant;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -48,8 +52,6 @@ public class BookingActivity extends AppCompatActivity {
     Date dateGo = null;
     Date dateArrival = null;
 
-    private static final int REQUEST_CODE_FROM = 100;
-    private static final int REQUEST_CODE_TO = 101;
     String idPlaceFrom = "";
     String idPlaceTo = "";
 
@@ -63,6 +65,47 @@ public class BookingActivity extends AppCompatActivity {
     }
 
     private void addEvent() {
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.nav_home:
+                        Intent intentHome = new Intent(BookingActivity.this, MainActivity.class);
+                        startActivity(intentHome);
+                        break;
+                    case R.id.nav_booking:
+
+                        break;
+                    case R.id.nav_checkin:
+                        Intent intentCheckin = new Intent(BookingActivity.this, CheckInActivity.class);
+                        startActivity(intentCheckin);
+                        break;
+                    case R.id.nav_my_trip:
+                        Intent intentFlight = new Intent(BookingActivity.this, FlightActivity.class);
+                        startActivity(intentFlight);
+                        break;
+                }
+                return true;
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.menu_booking:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.menu_home:
+                        Intent intentHome = new Intent(BookingActivity.this, MainActivity.class);
+                        startActivity(intentHome);
+                        break;
+                }
+                return true;
+            }
+        });
+
         btnKhuHoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,14 +135,8 @@ public class BookingActivity extends AppCompatActivity {
                     layoutDateArrival.setVisibility(View.INVISIBLE);
                     isRoundTrip = false;
                     dateArrival = null;
+                    txtDateArrival.setText("");
                 }
-            }
-        });
-
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                txtError.setText("Da tim kiem.");
             }
         });
 
@@ -107,7 +144,7 @@ public class BookingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentSelectAirport = new Intent(BookingActivity.this, SelectAirportActivity.class);
-                startActivityForResult(intentSelectAirport, REQUEST_CODE_FROM);
+                startActivityForResult(intentSelectAirport, Constant.REQUEST_CODE_FROM);
             }
         });
 
@@ -115,7 +152,7 @@ public class BookingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentSelectAirport = new Intent(BookingActivity.this, SelectAirportActivity.class);
-                startActivityForResult(intentSelectAirport, REQUEST_CODE_TO);
+                startActivityForResult(intentSelectAirport, Constant.REQUEST_CODE_TO);
             }
         });
 
@@ -167,6 +204,77 @@ public class BookingActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
+        btnAddAdult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNumPassenger(txtNumAdult,btnAddAdult,btnSubAdult,Constant.LIMIT_ADULT,true);
+            }
+        });
+
+        btnSubAdult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNumPassenger(txtNumAdult,btnAddAdult,btnSubAdult,Constant.LIMIT_ADULT,false);
+            }
+        });
+
+        btnAddChildren.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNumPassenger(txtNumChildren,btnAddChildren,btnSubChildren,Constant.LIMIT_CHILDREN,true);
+            }
+        });
+
+        btnSubChildren.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNumPassenger(txtNumChildren,btnAddChildren,btnSubChildren,Constant.LIMIT_CHILDREN,false);
+            }
+        });
+
+        btnAddBaby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNumPassenger(txtNumBaby,btnAddBaby,btnSubBaby,Constant.LIMIT_BABY,true);
+            }
+        });
+
+        btnSubBaby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNumPassenger(txtNumBaby,btnAddBaby,btnSubBaby,Constant.LIMIT_BABY,false);
+            }
+        });
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (txtFrom.getText().toString().trim().equalsIgnoreCase("")){
+                    txtError.setText(R.string.error_from);
+                }
+                else if (txtTo.getText().toString().trim().equalsIgnoreCase("")){
+                    txtError.setText(R.string.error_to);
+                }
+                else if (txtDateGo.getText().toString().trim().equalsIgnoreCase("")){
+                    txtError.setText(R.string.error_date_go);
+                }
+                else if (txtDateArrival.getText().toString().trim().equalsIgnoreCase("")&&isRoundTrip){
+                    txtError.setText(R.string.error_date_arrival);
+                }
+                else if (Integer.parseInt(txtNumBaby.getText().toString())>Integer.parseInt(txtNumAdult.getText().toString())){
+                    txtError.setText(R.string.error_num);
+                }
+                else if (txtNumAdult.getText().toString().equalsIgnoreCase("0")
+                        &&txtNumChildren.getText().toString().equalsIgnoreCase("0")
+                        &&txtNumBaby.getText().toString().equalsIgnoreCase("0")){
+                    txtError.setText(R.string.error_num);
+                }else {
+                    txtError.setText("");
+                    Toast.makeText(BookingActivity.this, "gui thoi", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void addControl() {
@@ -206,20 +314,55 @@ public class BookingActivity extends AppCompatActivity {
         layoutTo = findViewById(R.id.layoutTo);
         layoutDateGo = findViewById(R.id.layoutDateGo);
         layoutDateArrival = findViewById(R.id.layoutDateArrival);
+
+        Intent intentPlaceFragment = getIntent();
+        txtTo.setText(intentPlaceFragment.getStringExtra("placeArrival"));
+        idPlaceTo = intentPlaceFragment.getStringExtra("idPlaceArrival");
+
+        dateGo=calendar.getTime();
+        txtDateGo.setText(sdf1.format(dateGo));
+
+        txtNumAdult.setText("1");
+        checkCountPassenger(txtNumAdult.getText().toString(),btnAddAdult,btnSubAdult,Constant.LIMIT_ADULT);
+        checkCountPassenger(txtNumChildren.getText().toString(),btnAddChildren,btnSubChildren,Constant.LIMIT_CHILDREN);
+        checkCountPassenger(txtNumBaby.getText().toString(),btnAddBaby,btnSubBaby,Constant.LIMIT_BABY);
     }
 
-    private void checkCountPasssenger
+    private void checkCountPassenger(String number_string, ImageView add,ImageView sub,int limit){
+        int number = Integer.parseInt(number_string);
+        if (number<=0){
+            sub.setImageResource(R.drawable.ic_remove_circle_black_24dp);
+        }
+        else if (number>=limit){
+            add.setImageResource(R.drawable.ic_add_circle_black_24dp);
+        }else {
+            sub.setImageResource(R.drawable.ic_remove_circle_orange_24dp);
+            add.setImageResource(R.drawable.ic_add_circle_orange_24dp);
+        }
+    }
+
+    private  void setNumPassenger(TextView txt,ImageView add,ImageView sub,int limit,boolean isAdd){
+        int number = Integer.parseInt(txt.getText().toString());
+        if (isAdd && number<limit){
+            checkCountPassenger(String.valueOf(number+1),add,sub,limit);
+            txt.setText(String.valueOf(number+1));
+        }else if (!isAdd && number>0){
+            checkCountPassenger(String.valueOf(number-1),add,sub,limit);
+            txt.setText(String.valueOf(number-1));
+        }
+
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
-        if (requestCode == REQUEST_CODE_FROM && resultCode == RESULT_OK && data != null) {
+        if (requestCode == Constant.REQUEST_CODE_FROM && resultCode == RESULT_OK && data != null) {
             String placeFrom = data.getStringExtra("place");
             idPlaceFrom = data.getStringExtra("idplace");
             txtFrom.setText(placeFrom);
         }
 
-        if (requestCode == REQUEST_CODE_TO && resultCode == RESULT_OK && data != null) {
+        if (requestCode == Constant.REQUEST_CODE_TO && resultCode == RESULT_OK && data != null) {
             String placeFrom = data.getStringExtra("place");
             idPlaceTo = data.getStringExtra("idplace");
             txtTo.setText(placeFrom);

@@ -71,8 +71,8 @@ public class SelectAirportActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent =new Intent();
-                intent.putExtra("place",dsSanBay.get(position).getThanhPho());
-                intent.putExtra("idplace",dsSanBay.get(position).getMaSanBay());
+                intent.putExtra("place",adapterSanBay.getItem(position).getThanhPho());
+                intent.putExtra("idplace",adapterSanBay.getItem(position).getMaSanBay());
                 setResult(RESULT_OK,intent);
                 finish();
             }
