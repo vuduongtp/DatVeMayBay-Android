@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">DatVeMayBay</string>
+    <string name="btnRoundTrip">Round trip</string>
+    <string name="btnOneWay">One way</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_booking">Booking</string>
+    <string name="nav_checkin">Check-in</string>
+    <string name="help">Support</string>
+    <string name="about_me">About me</string>
+    <string name="nav_my_trip">Flight</string>
+    <string name="more">More</string>
+    <string name="history_booking">History booking</string>
+    <string name="my_seat">My seat</string>
+
+    <string name="cheap_ticket">Cheap ticket, daily, everyday</string>
+    <string name="txt_booking">Booking</string>
+    <string name="txt_cheap_ticket">Famous cheap ticket</string>
+    <string name="famous_place">Famous place</string>
+    <string name="search_flight">Search flight</string>
+    <string name="home_page">Home</string>
+
+    <string name="date_go">Date go</string>
+    <string name="date_arrival">Date arrival</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="adult">Adult</string>
+    <string name="children">Children</string>
+    <string name="baby">Baby</string>
+    <string name="search">Search</string>
+
+    <string name="select_place_go">Select place go</string>
+    <string name="select_place_arrival">Select place arrival</string>
+    <string name="search_place_go">Search place go</string>
+    <string name="search_place_arrival">Search place arrival</string>
+
+    <string name="english" translatable="false">English</string>
+    <string name="vietnamese" translatable="false">Vietnamese</string>
+    <string name="japanese" translatable="false">Japanese</string>
+</resources>
