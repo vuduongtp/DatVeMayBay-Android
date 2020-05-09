@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".model.SelectAirportActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_airport"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        app:title="@string/nav_airport"
+        app:titleTextColor="@color/colorBackgroundMain"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/holo_orange_dark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
     <TextView
         android:id="@+id/txtSelectPlace"

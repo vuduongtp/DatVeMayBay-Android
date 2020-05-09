@@ -1,7 +1,10 @@
 package com.vuvanduong.datvemaybay.model;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -39,6 +42,8 @@ public class SelectAirportActivity extends AppCompatActivity {
     ArrayList<SanBay> dsSanBay;
     AirportAdapter adapterSanBay;
 
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +62,7 @@ public class SelectAirportActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                System.out.println("Text ["+s+"]");
+//                System.out.println("Text ["+s+"]");
 
                 adapterSanBay.getFilter().filter(s.toString());
             }
@@ -80,66 +85,26 @@ public class SelectAirportActivity extends AppCompatActivity {
     }
 
     private void addControl() {
+        toolbar = findViewById(R.id.toolbar_airport);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         txtSearch = findViewById(R.id.txtSearchPlace);
         lvAirport = findViewById(R.id.lvAirport);
 
 
         dsSanBay = new ArrayList<>();
+        dsSanBay = this.getIntent().getParcelableArrayListExtra("dssanbay");
+        assert dsSanBay != null;
         adapterSanBay = new AirportAdapter(SelectAirportActivity.this, R.layout.airport_item, dsSanBay);
         lvAirport.setAdapter(adapterSanBay);
-        getAirport getAirport = new getAirport();
-        getAirport.execute();
     }
 
-    private class getAirport extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            dsSanBay.clear();
-            String url = Constant.DOMAIN_NAME + "api/san-bay/get-all";
-            RequestQueue requestQueue = Volley.newRequestQueue(SelectAirportActivity.this);
-            final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                    new Response.Listener<JSONArray>() {
-                        @Override
-                        public void onResponse(JSONArray response) {
-                            for (int i = 0; i < response.length(); i++) {
-                                try {
-                                    JSONObject jsonObject = response.getJSONObject(i);
-                                    SanBay sanBay = new SanBay();
-                                    if (jsonObject.has("MaSanBay")) {
-                                        sanBay.setMaSanBay(jsonObject.getString("MaSanBay"));
-                                        System.out.println(sanBay.getMaSanBay());
-                                    }
-                                    if (jsonObject.has("TenSanBay")) {
-                                        sanBay.setTenSanBay(jsonObject.getString("TenSanBay"));
-                                    }
-                                    if (jsonObject.has("ThanhPho")) {
-                                        sanBay.setThanhPho(jsonObject.getString("ThanhPho"));
-                                    }
-                                    if (jsonObject.has("QuocGia")) {
-                                        sanBay.setQuocGia(jsonObject.getString("QuocGia"));
-                                    }
-                                    if (jsonObject.has("GhiChu")) {
-                                        sanBay.setGhiChu(jsonObject.getString("GhiChu"));
-                                    }
-                                    dsSanBay.add(sanBay);
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            adapterSanBay.notifyDataSetChanged();
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.e("loi", error.toString());
-                        }
-                    });
-
-            requestQueue.add(jsonArrayRequest);
-            return null;
-        }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
+
 }

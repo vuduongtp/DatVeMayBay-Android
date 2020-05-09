@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".model.SelectAirportActivity"></activity>
+        <activity android:name=".model.SelectAirportActivity"
+            android:parentActivityName=".model.BookingActivity"/>
         <activity android:name=".model.FlightActivity" />
         <activity android:name=".model.CheckInActivity" />
         <activity android:name=".model.BookingActivity" />

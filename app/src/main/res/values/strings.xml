@@ -38,6 +38,8 @@
     <string name="error_date_go">Please select date go.</string>
     <string name="error_date_arrival">Please select date arrival.</string>
     <string name="error_num">Please select number of passenger.</string>
+    <string name="error_validate_baby">Number of adult must be more than number of baby.</string>
+    <string name="nav_airport">Airport</string>
 
     <string name="english" translatable="false">English</string>
     <string name="vietnamese" translatable="false">Vietnamese</string>

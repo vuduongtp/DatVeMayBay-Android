@@ -96,7 +96,7 @@ public class AirportAdapter extends ArrayAdapter<SanBay> implements Filterable {
             String filterableString;
 
             for (int i = 0; i < count; i++) {
-                filterableString = list.get(i).getThanhPho();
+                filterableString = list.get(i).getThanhPho() +" "+ list.get(i).getMaSanBay();
                 if (filterableString.toLowerCase().contains(filterString)) {
                     nlist.add(list.get(i));
                 }

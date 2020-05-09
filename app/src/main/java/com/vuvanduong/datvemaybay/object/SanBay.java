@@ -1,8 +1,11 @@
 package com.vuvanduong.datvemaybay.object;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
-public class SanBay implements Serializable {
+public class SanBay implements Serializable, Parcelable {
     private String MaSanBay;
     private String TenSanBay;
     private String ThanhPho;
@@ -19,6 +22,26 @@ public class SanBay implements Serializable {
         QuocGia = quocGia;
         GhiChu = ghiChu;
     }
+
+    protected SanBay(Parcel in) {
+        MaSanBay = in.readString();
+        TenSanBay = in.readString();
+        ThanhPho = in.readString();
+        QuocGia = in.readString();
+        GhiChu = in.readString();
+    }
+
+    public static final Creator<SanBay> CREATOR = new Creator<SanBay>() {
+        @Override
+        public SanBay createFromParcel(Parcel in) {
+            return new SanBay(in);
+        }
+
+        @Override
+        public SanBay[] newArray(int size) {
+            return new SanBay[size];
+        }
+    };
 
     public String getMaSanBay() {
         return MaSanBay;
@@ -59,4 +82,20 @@ public class SanBay implements Serializable {
     public void setGhiChu(String ghiChu) {
         GhiChu = ghiChu;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(MaSanBay);
+        dest.writeString(TenSanBay);
+        dest.writeString(ThanhPho);
+        dest.writeString(QuocGia);
+        dest.writeString(GhiChu);
+
+    }
+
 }

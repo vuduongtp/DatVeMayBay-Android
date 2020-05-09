@@ -10,7 +10,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -22,12 +24,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.vuvanduong.datvemaybay.R;
 import com.vuvanduong.datvemaybay.config.Constant;
+import com.vuvanduong.datvemaybay.object.SanBay;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -54,6 +68,8 @@ public class BookingActivity extends AppCompatActivity {
 
     String idPlaceFrom = "";
     String idPlaceTo = "";
+
+    ArrayList<SanBay> dsSanBay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +160,7 @@ public class BookingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentSelectAirport = new Intent(BookingActivity.this, SelectAirportActivity.class);
+                intentSelectAirport.putParcelableArrayListExtra("dssanbay", dsSanBay);
                 startActivityForResult(intentSelectAirport, Constant.REQUEST_CODE_FROM);
             }
         });
@@ -152,6 +169,7 @@ public class BookingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentSelectAirport = new Intent(BookingActivity.this, SelectAirportActivity.class);
+                intentSelectAirport.putParcelableArrayListExtra("dssanbay", dsSanBay);
                 startActivityForResult(intentSelectAirport, Constant.REQUEST_CODE_TO);
             }
         });
@@ -263,7 +281,7 @@ public class BookingActivity extends AppCompatActivity {
                     txtError.setText(R.string.error_date_arrival);
                 }
                 else if (Integer.parseInt(txtNumBaby.getText().toString())>Integer.parseInt(txtNumAdult.getText().toString())){
-                    txtError.setText(R.string.error_num);
+                    txtError.setText(R.string.error_validate_baby);
                 }
                 else if (txtNumAdult.getText().toString().equalsIgnoreCase("0")
                         &&txtNumChildren.getText().toString().equalsIgnoreCase("0")
@@ -326,6 +344,10 @@ public class BookingActivity extends AppCompatActivity {
         checkCountPassenger(txtNumAdult.getText().toString(),btnAddAdult,btnSubAdult,Constant.LIMIT_ADULT);
         checkCountPassenger(txtNumChildren.getText().toString(),btnAddChildren,btnSubChildren,Constant.LIMIT_CHILDREN);
         checkCountPassenger(txtNumBaby.getText().toString(),btnAddBaby,btnSubBaby,Constant.LIMIT_BABY);
+
+        dsSanBay = new ArrayList<>();
+        getAirport getAirport = new getAirport();
+        getAirport.execute();
     }
 
     private void checkCountPassenger(String number_string, ImageView add,ImageView sub,int limit){
@@ -369,5 +391,56 @@ public class BookingActivity extends AppCompatActivity {
         }
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private class getAirport extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            dsSanBay.clear();
+            String url = Constant.DOMAIN_NAME + "api/san-bay/get-all";
+            RequestQueue requestQueue = Volley.newRequestQueue(BookingActivity.this);
+            final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            for (int i = 0; i < response.length(); i++) {
+                                try {
+                                    JSONObject jsonObject = response.getJSONObject(i);
+                                    SanBay sanBay = new SanBay();
+                                    if (jsonObject.has("MaSanBay")) {
+                                        sanBay.setMaSanBay(jsonObject.getString("MaSanBay"));
+                                        System.out.println(sanBay.getMaSanBay());
+                                    }
+                                    if (jsonObject.has("TenSanBay")) {
+                                        sanBay.setTenSanBay(jsonObject.getString("TenSanBay"));
+                                    }
+                                    if (jsonObject.has("ThanhPho")) {
+                                        sanBay.setThanhPho(jsonObject.getString("ThanhPho"));
+                                    }
+                                    if (jsonObject.has("QuocGia")) {
+                                        sanBay.setQuocGia(jsonObject.getString("QuocGia"));
+                                    }
+                                    if (jsonObject.has("GhiChu")) {
+                                        sanBay.setGhiChu(jsonObject.getString("GhiChu"));
+                                    }
+                                    dsSanBay.add(sanBay);
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("loi", error.toString());
+                        }
+                    });
+
+            requestQueue.add(jsonArrayRequest);
+            return null;
+        }
     }
 }
