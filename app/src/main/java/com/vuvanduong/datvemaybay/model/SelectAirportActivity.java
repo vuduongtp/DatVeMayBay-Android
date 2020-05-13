@@ -96,7 +96,54 @@ public class SelectAirportActivity extends AppCompatActivity {
 
         dsSanBay = new ArrayList<>();
         dsSanBay = this.getIntent().getParcelableArrayListExtra("dssanbay");
+
         assert dsSanBay != null;
+        if (dsSanBay.isEmpty()){
+            String url = Constant.DOMAIN_NAME + "api/san-bay/get-all";
+            RequestQueue requestQueue = Volley.newRequestQueue(this.getApplicationContext());
+            final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            for (int i = 0; i < response.length(); i++) {
+                                try {
+                                    JSONObject jsonObject = response.getJSONObject(i);
+                                    SanBay sanBay = new SanBay();
+                                    if (jsonObject.has("MaSanBay")) {
+                                        sanBay.setMaSanBay(jsonObject.getString("MaSanBay"));
+                                        System.out.println(sanBay.getMaSanBay());
+                                    }
+                                    if (jsonObject.has("TenSanBay")) {
+                                        sanBay.setTenSanBay(jsonObject.getString("TenSanBay"));
+                                    }
+                                    if (jsonObject.has("ThanhPho")) {
+                                        sanBay.setThanhPho(jsonObject.getString("ThanhPho"));
+                                    }
+                                    if (jsonObject.has("QuocGia")) {
+                                        sanBay.setQuocGia(jsonObject.getString("QuocGia"));
+                                    }
+                                    if (jsonObject.has("GhiChu")) {
+                                        sanBay.setGhiChu(jsonObject.getString("GhiChu"));
+                                    }
+                                    dsSanBay.add(sanBay);
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("loi", error.toString());
+                        }
+                    });
+
+            requestQueue.add(jsonArrayRequest);
+            requestQueue.stop();
+        }
+
         adapterSanBay = new AirportAdapter(SelectAirportActivity.this, R.layout.airport_item, dsSanBay);
         lvAirport.setAdapter(adapterSanBay);
     }
@@ -107,4 +154,8 @@ public class SelectAirportActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 }

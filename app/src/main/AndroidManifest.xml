@@ -3,6 +3,7 @@
     package="com.vuvanduong.datvemaybay">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,8 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".model.SelectAirportActivity"
+        <activity android:name=".model.SelectFlightActivity"
             android:parentActivityName=".model.BookingActivity"/>
+        <activity
+            android:name=".model.SelectAirportActivity"
+            android:parentActivityName=".model.BookingActivity" />
         <activity android:name=".model.FlightActivity" />
         <activity android:name=".model.CheckInActivity" />
         <activity android:name=".model.BookingActivity" />

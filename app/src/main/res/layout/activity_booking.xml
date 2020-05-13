@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_alignParentTop="true"
-            android:background="@android:color/holo_orange_dark"
+            android:background="#1F4788"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
@@ -28,18 +28,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_below="@id/toolbar_booking"
-            android:layout_above="@id/bottom_navigation_booking">
+            android:layout_marginTop="3dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="3dp"
+                android:text="@string/search_flight"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:text="@string/search_flight" />
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,37 +48,37 @@
 
                 <Button
                     android:id="@+id/btnRoundTrip"
-                    android:background="@drawable/button_round_trip"
-                    android:textColor="#ffffff"
-                    android:layout_marginStart="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
                     android:layout_marginRight="-10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_round_trip"
+                    android:text="@string/btnRoundTrip"
                     android:textAllCaps="false"
-                    android:text="@string/btnRoundTrip" />
+                    android:textColor="#ffffff" />
 
                 <Button
                     android:id="@+id/btnOneWay"
-                    android:background="@drawable/button_round_trip_unclick"
-                    android:textColor="#676767"
-                    android:layout_marginEnd="10dp"
-                    android:textAllCaps="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="-10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
-                    android:text="@string/btnOneWay" />
+                    android:background="@drawable/button_round_trip_unclick"
+                    android:text="@string/btnOneWay"
+                    android:textAllCaps="false"
+                    android:textColor="#676767" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/layoutFrom"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
-                android:background="@drawable/custom_shape_layout_border"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
+                android:background="@drawable/custom_shape_layout_border"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -167,11 +167,11 @@
                     android:id="@+id/layoutDateGo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="10"
                     android:background="@drawable/custom_shape_layout_border"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="5dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -213,16 +213,16 @@
                     android:id="@+id/layoutDateArrival"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="10"
                     android:background="@drawable/custom_shape_layout_border"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_weight="10"
                         android:layout_height="match_parent"
+                        android:layout_weight="10"
                         android:orientation="vertical">
 
                         <TextView
@@ -231,17 +231,17 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/roboto_light"
                             android:paddingLeft="5dp"
-                            android:textColor="@color/colorMain"
-                            android:text="@string/date_arrival" />
+                            android:text="@string/date_arrival"
+                            android:textColor="@color/colorMain" />
 
                         <TextView
                             android:id="@+id/txtDateArrival"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingLeft="6dp"
+                            android:text=" "
                             android:textColor="@color/dark_gray"
-                            android:textSize="20sp"
-                            android:text=" " />
+                            android:textSize="20sp" />
                     </LinearLayout>
 
                     <ImageView
@@ -256,17 +256,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
-                android:weightSum="9"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="9">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_shape_layout_border"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="3"
+                    android:background="@drawable/custom_shape_layout_border"
                     android:orientation="vertical">
 
                     <TextView
@@ -274,8 +274,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_light"
                         android:gravity="center"
-                        android:textColor="@color/colorMain"
-                        android:text="@string/adult" />
+                        android:text="@string/adult"
+                        android:textColor="@color/colorMain" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -294,11 +294,11 @@
                             android:id="@+id/txtNumAdult"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/dark_gray"
-                            android:textSize="20sp"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            android:text="0" />
+                            android:text="0"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="20sp" />
 
                         <ImageView
                             android:id="@+id/btnAddAdult"
@@ -313,10 +313,10 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="3"
                     android:background="@drawable/custom_shape_layout_border"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="5dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -325,8 +325,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_light"
                         android:gravity="center"
-                        android:textColor="@color/colorMain"
-                        android:text="@string/children"  />
+                        android:text="@string/children"
+                        android:textColor="@color/colorMain" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -337,25 +337,25 @@
                         <ImageView
                             android:id="@+id/btnSubChildren"
                             android:layout_width="wrap_content"
-                            android:layout_weight="1"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             app:srcCompat="@drawable/ic_remove_circle_orange_24dp" />
 
                         <TextView
                             android:id="@+id/txtNumChildren"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/dark_gray"
-                            android:textSize="20sp"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            android:text="0"/>
+                            android:text="0"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="20sp" />
 
                         <ImageView
                             android:id="@+id/btnAddChildren"
                             android:layout_width="wrap_content"
-                            android:layout_weight="1"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             app:srcCompat="@drawable/ic_add_circle_orange_24dp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -363,10 +363,10 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="3"
                     android:background="@drawable/custom_shape_layout_border"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -375,8 +375,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_light"
                         android:gravity="center"
-                        android:textColor="@color/colorMain"
-                        android:text="@string/baby" />
+                        android:text="@string/baby"
+                        android:textColor="@color/colorMain" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -387,19 +387,19 @@
                         <ImageView
                             android:id="@+id/btnSubBaby"
                             android:layout_width="35dp"
-                            android:layout_weight="1"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             app:srcCompat="@drawable/ic_remove_circle_orange_24dp" />
 
                         <TextView
                             android:id="@+id/txtNumBaby"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/dark_gray"
-                            android:textSize="20sp"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            android:text="0" />
+                            android:text="0"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="20sp" />
 
                         <ImageView
                             android:id="@+id/btnAddBaby"
@@ -419,33 +419,33 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_light"
                 android:gravity="center"
-                android:textColor="#ff00"
-                android:text="" />
+                android:text=""
+                android:textColor="#ff00" />
 
             <Button
                 android:id="@+id/btnSearchBooking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:textColor="#ffffff"
-                android:background="@drawable/button_round_trip"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/button_round_trip"
+                android:text="@string/search"
                 android:textAllCaps="false"
-                android:text="@string/search" />
+                android:textColor="#ffffff" />
         </LinearLayout>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation_booking"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:layout_alignParentBottom="true"
-            app:itemBackground="@drawable/nav_view_item_background"
-            app:itemTextColor="@drawable/nav_view_item_textcolor"
-            app:menu="@menu/bottom_navigation"
-            app:itemIconTint="@color/colorMain"
-            android:background="@color/colorBackgroundMain"/>
+        <!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--            android:id="@+id/bottom_navigation_booking"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fitsSystemWindows="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            app:itemBackground="@drawable/nav_view_item_background"-->
+<!--            app:itemTextColor="@drawable/nav_view_item_textcolor"-->
+<!--            app:menu="@menu/bottom_navigation"-->
+<!--            app:itemIconTint="@color/colorMain"-->
+<!--            android:background="@color/colorBackgroundMain"/>-->
 
     </RelativeLayout>
 

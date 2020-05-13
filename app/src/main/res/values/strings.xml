@@ -40,6 +40,19 @@
     <string name="error_num">Please select number of passenger.</string>
     <string name="error_validate_baby">Number of adult must be more than number of baby.</string>
     <string name="nav_airport">Airport</string>
+    <string name="nav_flight">Flight</string>
+
+    <string name="select_flight_go">Select flight go</string>
+    <string name="select_flight_arrival">Select flight arrival</string>
+    <string name="thoigian_di_dukien">Time start expected:</string>
+    <string name="thoigian_den_dukien">Time end expected:</string>
+    <string name="status_flight">Status of flight</string>
+    <string name="btn_check">Check</string>
+    <string name="ready_checkin">Are you ready to check-in?</string>
+    <string name="guide_checkin">Type information an click button.</string>
+    <string name="ticket_code">Ticket code:</string>
+    <string name="first_name">Your first name:</string>
+
 
     <string name="english" translatable="false">English</string>
     <string name="vietnamese" translatable="false">Vietnamese</string>
