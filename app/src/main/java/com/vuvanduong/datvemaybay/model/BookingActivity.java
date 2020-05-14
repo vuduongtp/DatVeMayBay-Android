@@ -9,7 +9,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -73,6 +75,10 @@ public class BookingActivity extends AppCompatActivity {
     ArrayList<SanBay> dsSanBay;
 
     RequestQueue requestQueue;
+
+    ArrayList<ChuyenBay> chuyenBayDi;
+
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -297,15 +303,13 @@ public class BookingActivity extends AppCompatActivity {
                     txtError.setText(R.string.error_num);
                 }else {
                     txtError.setText("");
-                    if (isRoundTrip) {
-                        ArrayList<ChuyenBay> chuyenBayDi= new ArrayList<>();
-                        ArrayList<ChuyenBay> chuyenBayVe= new ArrayList<>();
-                        String url_go = Constant.DOMAIN_NAME + "api/chuyen-bay/get-by-query?ngayDi=" + getNumberOfDate(txtDateGo.getText().toString()) + "&diemDi=" + idPlaceFrom + "&diemDen=" + idPlaceTo;
-                        String url_arrival=Constant.DOMAIN_NAME + "api/chuyen-bay/get-by-query?ngayDi=" + getNumberOfDate(txtDateArrival.getText().toString()) + "&diemDi=" + idPlaceTo + "&diemDen=" + idPlaceFrom;
-                    }else {
-                        ArrayList<ChuyenBay> chuyenBayDi= new ArrayList<>();
-                        String url_go = Constant.DOMAIN_NAME + "api/chuyen-bay/get-by-query?ngayDi=" + getNumberOfDate(txtDateGo.getText().toString()) + "&diemDi=" + idPlaceFrom + "&diemDen=" + idPlaceTo;
-                    }
+
+                    chuyenBayDi = new ArrayList<>();
+
+                    String url_demo = Constant.DOMAIN_NAME+ "api/chuyen-bay/get-by-query?ngayDi=17042020";
+                    getChuyenBay task = new getChuyenBay();
+                    task.execute(url_demo);
+
                 }
             }
         });
@@ -352,6 +356,11 @@ public class BookingActivity extends AppCompatActivity {
         Intent intentPlaceFragment = getIntent();
         txtTo.setText(intentPlaceFragment.getStringExtra("placeArrival"));
         idPlaceTo = intentPlaceFragment.getStringExtra("idPlaceArrival");
+
+        dialog = new ProgressDialog(BookingActivity.this);
+        dialog.setTitle(getResources().getString(R.string.loading));
+        dialog.setMessage(getResources().getString(R.string.please_wait));
+        dialog.setCanceledOnTouchOutside(false);
 
         dateGo=calendar.getTime();
         txtDateGo.setText(sdf1.format(dateGo));
@@ -470,9 +479,141 @@ public class BookingActivity extends AppCompatActivity {
         }
     }
 
+    class getChuyenBay extends AsyncTask<String,Void, ArrayList<ChuyenBay>>{
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.show();
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected ArrayList<ChuyenBay> doInBackground(String... strings) {
+            String url = strings[0];
+            final ArrayList<ChuyenBay> chuyenBays = new ArrayList<>();
+            JsonArrayRequest jsonArrayRequest2 = new JsonArrayRequest(Request.Method.GET, url, null,
+                        new Response.Listener<JSONArray>() {
+                            @Override
+                            public void onResponse(JSONArray response) {
+                                for (int i = 0; i < response.length(); i++) {
+                                    try {
+                                        JSONObject jsonObject = response.getJSONObject(i);
+                                        ChuyenBay chuyenBay = new ChuyenBay();
+                                        if (jsonObject.has("MaChuyenBay")) {
+                                            chuyenBay.setMaChuyenBay(jsonObject.getString("MaChuyenBay"));
+                                            System.out.println(chuyenBay.getMaChuyenBay());
+                                        }
+                                        if (jsonObject.has("ThoiGianDiDuKien")) {
+                                            chuyenBay.setThoiGianDiDuKien(jsonObject.getString("ThoiGianDiDuKien"));
+                                        }
+                                        if (jsonObject.has("ThoiGianDenDuKien")) {
+                                            chuyenBay.setThoiGianDenDuKien(jsonObject.getString("ThoiGianDenDuKien"));
+                                        }
+                                        if (jsonObject.has("SanBayDi")) {
+                                            chuyenBay.setSanBayDi(jsonObject.getString("SanBayDi"));
+                                        }
+                                        if (jsonObject.has("SanBayDen")) {
+                                            chuyenBay.setSanBayDen(jsonObject.getString("SanBayDen"));
+                                        }
+                                        if (jsonObject.has("TrangThai")) {
+                                            chuyenBay.setTrangThai(jsonObject.getInt("TrangThai"));
+                                        }
+                                        if (jsonObject.has("GhiChu")) {
+                                            chuyenBay.setGhiChu(jsonObject.getString("GhiChu"));
+                                        }
+                                        if (jsonObject.has("MaMayBay")) {
+                                            chuyenBay.setMaMayBay(jsonObject.getString("MaMayBay"));
+                                        }
+                                        if (jsonObject.has("GiaVe")) {
+                                            chuyenBay.setGiaVe(jsonObject.getLong("GiaVe"));
+                                        }
+                                        chuyenBays.add(chuyenBay);
+                                        System.out.println("Size:" + chuyenBays.size());
+                                        chuyenBayDi.add(chuyenBay);
+                                        System.out.println("Size 2:" + chuyenBayDi.size());
+
+                                        if (chuyenBayDi.size()==response.length() && response.length()>0) {
+                                            int soluong = Integer.parseInt(txtNumAdult.getText().toString()) +
+                                                    Integer.parseInt(txtNumChildren.getText().toString()) +
+                                                    Integer.parseInt(txtNumBaby.getText().toString());
+                                            String noiDi = txtFrom.getText().toString();
+                                            String noiDen = txtTo.getText().toString();
+                                            String ngayDi = txtDateGo.getText().toString();
+                                            String ngayVe = txtDateArrival.getText().toString();
+                                            Intent intentSelectFlight = new Intent(BookingActivity.this, SelectFlightActivity.class);
+                                           // System.out.println("fasdf:" + chuyenBayDi.size());
+                                            dialog.dismiss();
+                                            if (isRoundTrip) {
+
+                                                String url_go = Constant.DOMAIN_NAME + "api/chuyen-bay/get-by-query?ngayDi=" + getNumberOfDate(txtDateGo.getText().toString()) + "&diemDi=" + idPlaceFrom + "&diemDen=" + idPlaceTo;
+                                                String url_arrival = Constant.DOMAIN_NAME + "api/chuyen-bay/get-by-query?ngayDi=" + getNumberOfDate(txtDateArrival.getText().toString()) + "&diemDi=" + idPlaceTo + "&diemDen=" + idPlaceFrom;
+
+                                                intentSelectFlight.putParcelableArrayListExtra("dschuyenbay", chuyenBayDi);
+                                                intentSelectFlight.putExtra("noiDi", noiDi);
+                                                intentSelectFlight.putExtra("noiDen", noiDen);
+                                                intentSelectFlight.putExtra("ngayDi", ngayDi);
+
+
+                                                if (!chuyenBayDi.isEmpty()) {
+                                                    startActivity(intentSelectFlight);
+                                                }
+
+                                            } else {
+                                                String url_go = Constant.DOMAIN_NAME + "api/chuyen-bay/get-by-query?ngayDi=" + getNumberOfDate(txtDateGo.getText().toString()) + "&diemDi=" + idPlaceFrom + "&diemDen=" + idPlaceTo;
+
+                                                intentSelectFlight.putParcelableArrayListExtra("dschuyenbay", chuyenBayDi);
+                                                intentSelectFlight.putExtra("noiDi", noiDi);
+                                                intentSelectFlight.putExtra("noiDen", noiDen);
+                                                intentSelectFlight.putExtra("ngayDi", ngayDi);
+
+                                                if (!chuyenBayDi.isEmpty()) {
+                                                    startActivity(intentSelectFlight);
+                                                }
+
+                                            }
+                                        }
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.e("loi", error.toString());
+                            }
+                        });
+
+                requestQueue.add(jsonArrayRequest2);
+
+                return chuyenBays;
+            }
+
+        @Override
+        protected void onPostExecute(ArrayList<ChuyenBay> chuyenBays) {
+            super.onPostExecute(chuyenBays);
+        }
+
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
-        requestQueue.stop();
+        //requestQueue.stop();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }else {
+            super.onBackPressed();
+        }
     }
 }

@@ -3,36 +3,35 @@ package com.vuvanduong.datvemaybay.object;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
 public class ChuyenBay implements Serializable, Parcelable {
-    @SerializedName("MaChuyenBay")
+  //  @SerializedName("MaChuyenBay")
     private String MaChuyenBay;
 
-    @SerializedName("ThoiGianDiDuKien")
+ //   @SerializedName("ThoiGianDiDuKien")
     private String ThoiGianDiDuKien;
 
-    @SerializedName("ThoiGianDenDuKien")
+ //   @SerializedName("ThoiGianDenDuKien")
     private String ThoiGianDenDuKien;
 
-    @SerializedName("SanBayDi")
+ //   @SerializedName("SanBayDi")
     private String SanBayDi;
 
-    @SerializedName("SanBayDen")
+  //  @SerializedName("SanBayDen")
     private String SanBayDen;
 
-    @SerializedName("TrangThai")
+ //   @SerializedName("TrangThai")
     private int TrangThai;
 
-    @SerializedName("GhiChu")
+  //  @SerializedName("GhiChu")
     private String GhiChu;
 
-    @SerializedName("MaMayBay")
+  //  @SerializedName("MaMayBay")
     private String MaMayBay;
 
-    @SerializedName("GiaVe")
+ //   @SerializedName("GiaVe")
     private float GiaVe;
 
     public ChuyenBay() {
@@ -150,5 +149,20 @@ public class ChuyenBay implements Serializable, Parcelable {
         dest.writeString(GhiChu);
         dest.writeString(MaMayBay);
         dest.writeFloat(GiaVe);
+    }
+
+    @Override
+    public String toString() {
+        return "ChuyenBay{" +
+                "MaChuyenBay='" + MaChuyenBay + '\'' +
+                ", ThoiGianDiDuKien='" + ThoiGianDiDuKien + '\'' +
+                ", ThoiGianDenDuKien='" + ThoiGianDenDuKien + '\'' +
+                ", SanBayDi='" + SanBayDi + '\'' +
+                ", SanBayDen='" + SanBayDen + '\'' +
+                ", TrangThai=" + TrangThai +
+                ", GhiChu='" + GhiChu + '\'' +
+                ", MaMayBay='" + MaMayBay + '\'' +
+                ", GiaVe=" + GiaVe +
+                '}';
     }
 }

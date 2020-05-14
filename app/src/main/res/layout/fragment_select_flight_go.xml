@@ -11,36 +11,42 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_margin="5dp"
-        android:textColor="@color/textBold"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="@color/dark_blue"
         android:textSize="18sp"
         android:text="@string/select_flight_go" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_weight="1"
                 android:layout_marginStart="4dp"
+                android:layout_weight="1"
                 android:background="@drawable/custom_date_unactive_left"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txtDate1"
                     android:layout_width="match_parent"
-                    android:gravity="center"
                     android:layout_height="match_parent"
-                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="20/11/2020"
                     android:textColor="@color/gray"
-                    android:text="20/11/2020"  />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -54,36 +60,43 @@
                 <TextView
                     android:id="@+id/txtDate2"
                     android:layout_width="match_parent"
-                    android:gravity="center"
                     android:layout_height="match_parent"
-                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="20/11/2020"
                     android:textColor="@android:color/holo_blue_dark"
-                    android:text="20/11/2020"  />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_marginEnd="4dp"
+                android:layout_weight="1"
                 android:background="@drawable/custom_date_unactive_right"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txtDate3"
                     android:layout_width="match_parent"
-                    android:gravity="center"
                     android:layout_height="match_parent"
-                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="20/11/2020"
                     android:textColor="@color/gray"
-                    android:text="20/11/2020" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
         </LinearLayout>
+
+        <ListView
+            android:id="@+id/lvFlight"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:layout_margin="10dp" >
+
+        </ListView>
+
+    </LinearLayout>
+
     </ScrollView>
 
-    <ListView
-        android:id="@+id/lvFlight"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 </LinearLayout>

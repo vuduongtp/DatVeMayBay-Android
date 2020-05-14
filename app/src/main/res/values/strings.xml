@@ -53,6 +53,9 @@
     <string name="ticket_code">Ticket code:</string>
     <string name="first_name">Your first name:</string>
 
+    <string name="loading">Loading...</string>
+    <string name="please_wait">Please wait a few minutes.</string>
+
 
     <string name="english" translatable="false">English</string>
     <string name="vietnamese" translatable="false">Vietnamese</string>
