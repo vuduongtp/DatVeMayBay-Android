@@ -18,7 +18,11 @@ import com.vuvanduong.datvemaybay.adapter.FlightAdapter;
 import com.vuvanduong.datvemaybay.model.BookingActivity;
 import com.vuvanduong.datvemaybay.object.ChuyenBay;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class FragmentSelectFlightGo extends Fragment {
@@ -49,8 +53,28 @@ public class FragmentSelectFlightGo extends Fragment {
         noiDen = getArguments().getString("noiDen");
         ngayDi = getArguments().getString("ngayDi");
 
-       // txtFromTo.setText(noiDi + " - "+noiDen);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date dateNgayDi= null;
+        try {
+            dateNgayDi = dateFormat.parse(ngayDi);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar c = Calendar.getInstance();
+        c.setTime(dateNgayDi);
+
+        Date dateTommorow = new Date();
+        dateTommorow.setTime(c.getTimeInMillis()+86400000+2000);
+        String strDateTomorrow = dateFormat.format(dateTommorow);
+
+        Date dateYesterday = new Date();
+        dateYesterday.setTime(c.getTimeInMillis()-86400000+1000);
+        String strDateYesterday = dateFormat.format(dateYesterday);
+
+        txtFromTo.setText(noiDi + " - "+noiDen);
         txtDate2.setText(ngayDi);
+        txtDate1.setText(strDateYesterday);
+        txtDate3.setText(strDateTomorrow);
 
         flightAdapter = new FlightAdapter(getActivity(),R.layout.flight_item,chuyenBays);
         lvFlight.setAdapter(flightAdapter);

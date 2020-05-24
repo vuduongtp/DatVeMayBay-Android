@@ -63,7 +63,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="20/11/2020"
-                    android:textColor="@android:color/holo_blue_dark"
+                    android:textColor="@color/white"
                     android:textSize="16sp" />
             </LinearLayout>
 

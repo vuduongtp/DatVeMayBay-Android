@@ -35,6 +35,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.vuvanduong.datvemaybay.R;
+import com.vuvanduong.datvemaybay.app.MyVolley;
 import com.vuvanduong.datvemaybay.config.Constant;
 import com.vuvanduong.datvemaybay.object.ChuyenBay;
 import com.vuvanduong.datvemaybay.object.SanBay;
@@ -74,8 +75,6 @@ public class BookingActivity extends AppCompatActivity {
 
     ArrayList<SanBay> dsSanBay;
 
-    RequestQueue requestQueue;
-
     ArrayList<ChuyenBay> chuyenBayDi;
 
     ProgressDialog dialog;
@@ -90,33 +89,6 @@ public class BookingActivity extends AppCompatActivity {
     }
 
     private void addEvent() {
-
-//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-//                switch (menuItem.getItemId()) {
-//                    case R.id.nav_home:
-//                        Intent intentHome = new Intent(BookingActivity.this, MainActivity.class);
-//                        startActivity(intentHome);
-//                        finish();
-//                        break;
-//                    case R.id.nav_booking:
-//
-//                        break;
-//                    case R.id.nav_checkin:
-//                        Intent intentCheckin = new Intent(BookingActivity.this, CheckInActivity.class);
-//                        startActivity(intentCheckin);
-//                        finish();
-//                        break;
-//                    case R.id.nav_my_trip:
-//                        Intent intentFlight = new Intent(BookingActivity.this, FlightActivity.class);
-//                        startActivity(intentFlight);
-//                        finish();
-//                        break;
-//                }
-//                return true;
-//            }
-//        });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -370,8 +342,6 @@ public class BookingActivity extends AppCompatActivity {
         checkCountPassenger(txtNumChildren.getText().toString(),btnAddChildren,btnSubChildren,Constant.LIMIT_CHILDREN);
         checkCountPassenger(txtNumBaby.getText().toString(),btnAddBaby,btnSubBaby,Constant.LIMIT_BABY);
 
-        requestQueue = Volley.newRequestQueue(this.getApplicationContext());
-
         dsSanBay = new ArrayList<>();
         getAirport getAirport = new getAirport();
         getAirport.execute();
@@ -433,6 +403,7 @@ public class BookingActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            RequestQueue queue = MyVolley.getRequestQueue();
             dsSanBay.clear();
             String url = Constant.DOMAIN_NAME + "api/san-bay/get-all";
             final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -474,7 +445,7 @@ public class BookingActivity extends AppCompatActivity {
                         }
                     });
 
-            requestQueue.add(jsonArrayRequest);
+            queue.add(jsonArrayRequest);
             return null;
         }
     }
@@ -493,6 +464,7 @@ public class BookingActivity extends AppCompatActivity {
 
         @Override
         protected ArrayList<ChuyenBay> doInBackground(String... strings) {
+            RequestQueue queue = MyVolley.getRequestQueue();
             String url = strings[0];
             final ArrayList<ChuyenBay> chuyenBays = new ArrayList<>();
             JsonArrayRequest jsonArrayRequest2 = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -590,7 +562,7 @@ public class BookingActivity extends AppCompatActivity {
                             }
                         });
 
-                requestQueue.add(jsonArrayRequest2);
+                queue.add(jsonArrayRequest2);
 
                 return chuyenBays;
             }
