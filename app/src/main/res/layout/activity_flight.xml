@@ -5,7 +5,7 @@
     android:id="@+id/drawerFlight"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".model.FlightActivity">
+    tools:context=".activity.FlightActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

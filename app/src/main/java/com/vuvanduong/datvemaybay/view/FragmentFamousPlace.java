@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.Nullable;
 
 import com.vuvanduong.datvemaybay.R;
-import com.vuvanduong.datvemaybay.model.BookingActivity;
+import com.vuvanduong.datvemaybay.activity.BookingActivity;
 
 
 public class FragmentFamousPlace extends Fragment {

@@ -11,7 +11,8 @@ public class InitialVolley extends Application {
     }
 
 
-    private void init() {
+    public void init() {
+        System.out.println("Chay vo day");
         MyVolley.init(this);
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".model.SelectFlightActivity"
+    tools:context=".activity.SelectFlightActivity"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -20,29 +20,98 @@
         app:titleTextColor="@color/colorBackgroundMain" />
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:id="@+id/scrollFlight"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
-            <FrameLayout
-                android:id="@+id/selectFlightGo"
+        <TextView
+            android:id="@+id/txtFromTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/dark_blue"
+            android:textSize="18sp"
+            android:text="@string/select_flight_go" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="60dp"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_date_unactive_left"
+                android:orientation="vertical">
 
-            </FrameLayout>
+                <TextView
+                    android:id="@+id/txtDate1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="20/11/2020"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp" />
 
-            <FrameLayout
-                android:id="@+id/selectFlightArrival"
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_round_trip_unclick"
+                android:orientation="vertical">
 
-            </FrameLayout>
+                <TextView
+                    android:id="@+id/txtDate2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="20/11/2020"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_date_unactive_right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtDate3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="20/11/2020"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
         </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/selectFlightGo"
+            android:layout_width="match_parent"
+            android:layout_height="500dp">
+
+        </FrameLayout>
+
+        </LinearLayout>
+
     </ScrollView>
 
 
