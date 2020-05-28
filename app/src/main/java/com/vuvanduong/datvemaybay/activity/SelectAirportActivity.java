@@ -136,7 +136,6 @@ public class SelectAirportActivity extends AppCompatActivity {
                     });
 
             requestQueue.add(jsonArrayRequest);
-            requestQueue.stop();
         }
 
         adapterSanBay = new AirportAdapter(SelectAirportActivity.this, R.layout.airport_item, dsSanBay);

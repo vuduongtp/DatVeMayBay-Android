@@ -18,7 +18,6 @@ import android.widget.Button;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.vuvanduong.datvemaybay.R;
-import com.vuvanduong.datvemaybay.app.InitialVolley;
 import com.vuvanduong.datvemaybay.view.FragmentFamousPlace;
 
 public class MainActivity extends AppCompatActivity {

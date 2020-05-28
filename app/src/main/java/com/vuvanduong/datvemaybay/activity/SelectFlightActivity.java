@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.vuvanduong.datvemaybay.R;
+import com.vuvanduong.datvemaybay.config.Constant;
 import com.vuvanduong.datvemaybay.object.ChuyenBay;
 import com.vuvanduong.datvemaybay.view.FragmentSelectFlightGo;
 
@@ -54,11 +55,9 @@ public class SelectFlightActivity extends AppCompatActivity {
         isFromBooking = this.getIntent().getBooleanExtra("isFromBooking",false);
         isRoundTrip = this.getIntent().getBooleanExtra("isRoundTrip",false);
        // Toast.makeText(this, chuyenBays.get(0).getThoiGianDenDuKien(), Toast.LENGTH_SHORT).show();
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date dateNgayDi= null;
         try {
-            dateNgayDi = dateFormat.parse(ngayDi);
+            dateNgayDi = Constant.sdf.parse(ngayDi);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -67,13 +66,15 @@ public class SelectFlightActivity extends AppCompatActivity {
 
         Date dateTommorow = new Date();
         dateTommorow.setTime(c.getTimeInMillis()+86400000+2000);
-        String strDateTomorrow = dateFormat.format(dateTommorow);
+        String strDateTomorrow = Constant.sdf.format(dateTommorow);
 
         Date dateYesterday = new Date();
         dateYesterday.setTime(c.getTimeInMillis()-86400000+1000);
-        String strDateYesterday = dateFormat.format(dateYesterday);
+        String strDateYesterday = Constant.sdf.format(dateYesterday);
 
-        txtFromTo.setText(noiDi + " - "+noiDen);
+        if (!isRoundTrip&&isFromBooking) {
+            txtFromTo.setText("Please select flight go.\n"+noiDi + " - " + noiDen);
+        }
         txtDate2.setText(ngayDi);
         txtDate1.setText(strDateYesterday);
         txtDate3.setText(strDateTomorrow);

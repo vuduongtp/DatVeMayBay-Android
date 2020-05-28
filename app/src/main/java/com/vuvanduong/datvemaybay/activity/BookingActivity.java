@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,6 +32,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.google.android.material.navigation.NavigationView;
 import com.vuvanduong.datvemaybay.R;
+import com.vuvanduong.datvemaybay.app.InitialApp;
 import com.vuvanduong.datvemaybay.app.MyVolley;
 import com.vuvanduong.datvemaybay.config.Constant;
 import com.vuvanduong.datvemaybay.object.ChuyenBay;
@@ -62,7 +64,7 @@ public class BookingActivity extends AppCompatActivity {
     boolean isRoundTrip = true;
 
     Calendar calendar = Calendar.getInstance();
-    SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+
     Date dateGo = null;
     Date dateArrival = null;
 
@@ -166,7 +168,7 @@ public class BookingActivity extends AppCompatActivity {
                         calendar.set(Calendar.MONTH, month);
                         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                         dateGo = calendar.getTime();
-                        txtDateGo.setText(sdf1.format(calendar.getTime()));
+                        txtDateGo.setText(Constant.sdf.format(calendar.getTime()));
                         calendar = Calendar.getInstance();
                     }
                 };
@@ -190,7 +192,7 @@ public class BookingActivity extends AppCompatActivity {
                         calendar.set(Calendar.MONTH, month);
                         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                         dateArrival = calendar.getTime();
-                        txtDateArrival.setText(sdf1.format(calendar.getTime()));
+                        txtDateArrival.setText(Constant.sdf.format(calendar.getTime()));
                         calendar = Calendar.getInstance();
                     }
                 };
@@ -331,7 +333,7 @@ public class BookingActivity extends AppCompatActivity {
         dialog.setCanceledOnTouchOutside(false);
 
         dateGo=calendar.getTime();
-        txtDateGo.setText(sdf1.format(dateGo));
+        txtDateGo.setText(Constant.sdf.format(dateGo));
 
         txtNumAdult.setText("1");
         checkCountPassenger(txtNumAdult.getText().toString(),btnAddAdult,btnSubAdult,Constant.LIMIT_ADULT);
@@ -440,6 +442,11 @@ public class BookingActivity extends AppCompatActivity {
                             Log.e("loi", error.toString());
                         }
                     });
+
+            jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    5000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
             queue.add(jsonArrayRequest);
             return null;
@@ -561,6 +568,11 @@ public class BookingActivity extends AppCompatActivity {
                                 Log.e("loi", error.toString());
                             }
                         });
+
+                jsonArrayRequest2.setRetryPolicy(new DefaultRetryPolicy(
+                    10000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
                 queue.add(jsonArrayRequest2);
 
