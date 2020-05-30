@@ -37,9 +37,8 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView"
                         android:layout_width="match_parent"
-                        android:layout_height="201dp"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/vna"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="center"
@@ -60,7 +59,6 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/roboto_regular"
@@ -71,7 +69,6 @@
                                 android:textSize="24sp" />
 
                             <TextView
-                                android:id="@+id/textView3"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/roboto_regular"
@@ -98,7 +95,6 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/colorBackgroundMain"

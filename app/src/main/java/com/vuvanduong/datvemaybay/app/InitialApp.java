@@ -1,29 +1,9 @@
 package com.vuvanduong.datvemaybay.app;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
-import android.util.Log;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.vuvanduong.datvemaybay.WelcomeActivity;
-import com.vuvanduong.datvemaybay.activity.BookingActivity;
-import com.vuvanduong.datvemaybay.activity.SelectAirportActivity;
-import com.vuvanduong.datvemaybay.config.Constant;
-import com.vuvanduong.datvemaybay.object.SanBay;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Objects;
+import com.vuvanduong.datvemaybay.activity.WelcomeActivity;
 
 public class InitialApp extends Application {
 

@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_flight"
+            android:id="@+id/toolbar_status_flight"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_alignParentTop="true"
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_below="@id/toolbar_flight">
+            android:layout_below="@id/toolbar_status_flight">
 
             <TextView
                 android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                 android:text="@string/status_flight" />
 
             <LinearLayout
-            android:id="@+id/layoutFrom"
+            android:id="@+id/layoutFromStatusFlight"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/custom_shape_layout_border"
@@ -65,7 +65,7 @@
                     android:textColor="@color/colorMain" />
 
                 <TextView
-                    android:id="@+id/txtFrom"
+                    android:id="@+id/txtFromStatusFlight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="6dp"
@@ -84,7 +84,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layoutTo"
+            android:id="@+id/layoutToStatusFlight"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_marginStart="10dp"
@@ -109,7 +109,7 @@
                     android:textColor="@color/colorMain" />
 
                 <TextView
-                    android:id="@+id/txtTo"
+                    android:id="@+id/txtToStatusFlight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="6dp"
@@ -128,7 +128,7 @@
         </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layoutDateGo"
+                android:id="@+id/layoutDateGoStatusFlight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_shape_layout_border"
@@ -153,7 +153,7 @@
                         android:textColor="@color/colorMain" />
 
                     <TextView
-                        android:id="@+id/txtDateGo"
+                        android:id="@+id/txtDateGoStatusFlight"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:paddingLeft="6dp"
@@ -172,7 +172,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/txtErrorCheckFlight"
+                android:id="@+id/txtErrorStatusFlight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_light"
@@ -182,7 +182,7 @@
                 android:text="" />
 
             <Button
-                android:id="@+id/btnSearchBooking"
+                android:id="@+id/btnCheckStatusFlight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -192,6 +192,12 @@
                 android:layout_marginTop="5dp"
                 android:textAllCaps="false"
                 android:text="@string/btn_check" />
+
+            <ListView
+                android:id="@+id/lvStatusFlight"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
@@ -210,7 +216,7 @@
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view_Flight"
+        android:id="@+id/nav_view_StatusFlight"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"

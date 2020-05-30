@@ -26,6 +26,11 @@ public class SelectFlightActivity extends AppCompatActivity {
     String noiDi="";
     String noiDen="";
     String ngayDi="";
+    String ngayVe="";
+    int soLuong=0;
+    String urlArrival="";
+    String urlGo="";
+    String maChuyenBayDi="";
     boolean isFromBooking=true;
     boolean isRoundTrip=false;
 
@@ -49,11 +54,16 @@ public class SelectFlightActivity extends AppCompatActivity {
 
         chuyenBays = new ArrayList<>();
         chuyenBays = this.getIntent().getParcelableArrayListExtra("dschuyenbay");
+        soLuong = this.getIntent().getIntExtra("soLuong",1);
+        urlArrival = this.getIntent().getStringExtra("url_arrival");
+        urlGo = this.getIntent().getStringExtra("url_go");
         noiDi = this.getIntent().getStringExtra("noiDi");
         noiDen = this.getIntent().getStringExtra("noiDen");
         ngayDi = this.getIntent().getStringExtra("ngayDi");
+        ngayVe = this.getIntent().getStringExtra("ngayVe");
         isFromBooking = this.getIntent().getBooleanExtra("isFromBooking",false);
         isRoundTrip = this.getIntent().getBooleanExtra("isRoundTrip",false);
+        maChuyenBayDi = this.getIntent().getStringExtra("maChuyenBayDi");
        // Toast.makeText(this, chuyenBays.get(0).getThoiGianDenDuKien(), Toast.LENGTH_SHORT).show();
         Date dateNgayDi= null;
         try {
@@ -72,8 +82,10 @@ public class SelectFlightActivity extends AppCompatActivity {
         dateYesterday.setTime(c.getTimeInMillis()-86400000+1000);
         String strDateYesterday = Constant.sdf.format(dateYesterday);
 
-        if (!isRoundTrip&&isFromBooking) {
+        if (isFromBooking) {
             txtFromTo.setText("Please select flight go.\n"+noiDi + " - " + noiDen);
+        }else {
+            txtFromTo.setText("Please select flight arrival.\n"+noiDi + " - " + noiDen);
         }
         txtDate2.setText(ngayDi);
         txtDate1.setText(strDateYesterday);
@@ -81,9 +93,16 @@ public class SelectFlightActivity extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("dschuyenbay", chuyenBays);
+        bundle.putInt("soLuong",soLuong);
+        bundle.putString("urlArrival",urlArrival);
+        bundle.putString("urlGo",urlGo);
         bundle.putString("noiDi",noiDi);
         bundle.putString("noiDen",noiDen);
         bundle.putString("ngayDi",ngayDi);
+        bundle.putString("ngayVe",ngayVe);
+        bundle.putBoolean("isRoundTrip",isRoundTrip);
+        bundle.putBoolean("isFromBooking",isFromBooking);
+        bundle.putString("maChuyenBayDi",maChuyenBayDi);
         FragmentSelectFlightGo fragmentSelectFlightGo = new FragmentSelectFlightGo();
         fragmentSelectFlightGo.setArguments(bundle);
         FragmentManager fragmentManager=getFragmentManager();

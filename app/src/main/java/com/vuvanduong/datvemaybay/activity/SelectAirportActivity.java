@@ -121,6 +121,7 @@ public class SelectAirportActivity extends AppCompatActivity {
                                         sanBay.setGhiChu(jsonObject.getString("GhiChu"));
                                     }
                                     dsSanBay.add(sanBay);
+                                    adapterSanBay.notifyDataSetChanged();
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();

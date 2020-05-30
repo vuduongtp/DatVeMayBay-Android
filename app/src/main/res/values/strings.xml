@@ -51,10 +51,15 @@
     <string name="ready_checkin">Are you ready to check-in?</string>
     <string name="guide_checkin">Type information an click button.</string>
     <string name="ticket_code">Ticket code:</string>
-    <string name="first_name">Your first name:</string>
 
     <string name="loading">Loading...</string>
     <string name="please_wait">Please wait a few minutes.</string>
+
+    <string name="user_info">User Information</string>
+    <string name="first_name">First name:</string>
+    <string name="last_name">Last name:</string>
+    <string name="ID_code">ID Code:</string>
+    <string name="email">Email:</string>
 
 
     <string name="english" translatable="false">English</string>

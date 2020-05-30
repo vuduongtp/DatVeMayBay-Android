@@ -1,5 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DatVeMayBay</string>
-    <string name="btnKhuHoi">Khứ hồi</string>
+    <string name="btnRoundTrip">Khứ hồi</string>
+    <string name="btnOneWay">Một chiều</string>
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_booking">Đặt vé</string>
+    <string name="nav_checkin">Check-in</string>
+    <string name="help">Hỗ trợ</string>
+    <string name="about_me">Về chúng tôi</string>
+    <string name="nav_my_trip">Chuyến bay</string>
+    <string name="more">Hơn nữa</string>
+    <string name="history_booking">Lịch sử đặt vé</string>
+    <string name="my_seat">Chỗ ngồi</string>
+    <string name="cheap_ticket">Vé rẻ hàng ngày, mỗi ngày</string>
+    <string name="txt_booking">Đặt vé</string>
+    <string name="txt_cheap_ticket">Vé rẻ bất ngờ</string>
+    <string name="famous_place">Điểm đến nổi tiếng</string>
+    <string name="search_flight">Tìm chuyến bay</string>
+    <string name="home_page">Trang chủ</string>
+    <string name="date_go">Ngày đi</string>
+    <string name="date_arrival">Ngày về</string>
+    <string name="from">Từ</string>
+    <string name="to">Đến</string>
+    <string name="adult">Người lớn</string>
+    <string name="children">Trẻ em</string>
+    <string name="baby">Em bé</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="select_place_go">Chọn nơi đi</string>
+    <string name="select_place_arrival">Chọn nơi đến</string>
+    <string name="search_place_go">Tìm nơi đi</string>
+    <string name="search_place_arrival">Tìm nơi về</string>
+    <string name="error_from">Hãy chọn nơi đi.</string>
+    <string name="error_to">Hãy chọn nơi đến.</string>
+    <string name="error_date_go">Hãy chọn ngày đi.</string>
+    <string name="error_date_arrival">Hãy chọn ngày đến.</string>
+    <string name="error_num">Hãy chọn số lượng hành khách.</string>
+    <string name="error_validate_baby">Số lượng người lớn phải nhiều hơn số lượng trẻ em.</string>
+    <string name="nav_airport">Sân bay</string>
+    <string name="nav_flight">Chuyến bay</string>
+    <string name="select_flight_go">Chọn chuyến bay đi</string>
+    <string name="select_flight_arrival">Chọn chuyến bay đến</string>
+    <string name="thoigian_di_dukien">Thời gian khởi hành:</string>
+    <string name="thoigian_den_dukien">Thời gian kết thúc:</string>
+    <string name="status_flight">Trạng thái chuyến bay</string>
+    <string name="btn_check">Kiểm tra</string>
+    <string name="ready_checkin">Bạn đã sẵn sàng check-in?</string>
+    <string name="guide_checkin">Hãy nhập thông tin của bạn.</string>
+    <string name="ticket_code">Mã đặt chỗ:</string>
+    <string name="first_name">Họ:</string>
+    <string name="loading">Đang tải...</string>
+    <string name="please_wait">Vui lòng đợi trong giây lát.</string>
+    <string name="english" translatable="false">Tiếng Anh</string>
+    <string name="vietnamese" translatable="false">Tiếng Việt</string>
+    <string name="japanese" translatable="false">Tiếng Nhật</string>
 </resources>

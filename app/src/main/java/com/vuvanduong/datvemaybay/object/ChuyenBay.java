@@ -34,6 +34,8 @@ public class ChuyenBay implements Serializable, Parcelable {
  //   @SerializedName("GiaVe")
     private float GiaVe;
 
+    private  int SoLuongVe;
+
     public ChuyenBay() {
     }
 
@@ -47,6 +49,7 @@ public class ChuyenBay implements Serializable, Parcelable {
         GhiChu = in.readString();
         MaMayBay = in.readString();
         GiaVe = in.readFloat();
+        SoLuongVe = in.readInt();
     }
 
     public static final Creator<ChuyenBay> CREATOR = new Creator<ChuyenBay>() {
@@ -60,6 +63,14 @@ public class ChuyenBay implements Serializable, Parcelable {
             return new ChuyenBay[size];
         }
     };
+
+    public int getSoLuongVe() {
+        return SoLuongVe;
+    }
+
+    public void setSoLuongVe(int soLuongVe) {
+        SoLuongVe = soLuongVe;
+    }
 
     public String getMaChuyenBay() {
         return MaChuyenBay;
@@ -149,6 +160,7 @@ public class ChuyenBay implements Serializable, Parcelable {
         dest.writeString(GhiChu);
         dest.writeString(MaMayBay);
         dest.writeFloat(GiaVe);
+        dest.writeInt(SoLuongVe);
     }
 
     @Override

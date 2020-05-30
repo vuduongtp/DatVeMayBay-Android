@@ -24,13 +24,15 @@ public class FlightAdapter extends ArrayAdapter<ChuyenBay> {
     Activity context;
     int resource;
     List<ChuyenBay> objects;
+    boolean isFromSelectFight;
 
-    public FlightAdapter(@NonNull Activity context, int resource, @NonNull List<ChuyenBay> objects) {
+    public FlightAdapter(@NonNull Activity context, int resource, @NonNull List<ChuyenBay> objects,boolean isFromSelectFight) {
         super(context, resource, objects);
 
         this.context = context;
         this.resource = resource;
         this.objects = objects;
+        this.isFromSelectFight=isFromSelectFight;
     }
 
 
@@ -65,8 +67,12 @@ public class FlightAdapter extends ArrayAdapter<ChuyenBay> {
         }
         ChuyenBay chuyenBay = this.objects.get(position);
         holder.txtSoHieu.setText(chuyenBay.getMaChuyenBay());
-        holder.txtChuyenDi.setText("Hanoi - Nghe An");
-        holder.txtGiaHoacTrangThai.setText("1.234.000 đ");
+        holder.txtChuyenDi.setText(chuyenBay.getSanBayDi()+" - "+chuyenBay.getSanBayDen());
+        if (isFromSelectFight) {
+            holder.txtGiaHoacTrangThai.setText(String.valueOf(chuyenBay.getGiaVe()) + " đ");
+        }else {
+            holder.txtGiaHoacTrangThai.setText("Hoạt động");
+        }
         holder.txtTimeStartExpected.setText(chuyenBay.getThoiGianDiDuKien());
         holder.txtTimeEndExpected.setText(chuyenBay.getThoiGianDenDuKien());
 
