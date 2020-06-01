@@ -4,15 +4,74 @@ import java.io.Serializable;
 
 public class Ve implements Serializable {
     private String MaVe;
-    private String NgayDat;
+    private String NgayBay;
     private String SoGhe;
     private String ChuyenBay;
     private String Gia;
     private int TrangThai;
     private String NguoiDat;
     private String Email;
+    private String BayTu;
+    private String BayDen;
+    private String GioKhoiHanh;
+    private String GioKetThuc;
 
     public Ve() {
+    }
+
+    public Ve(String maVe, String ngayBay, String soGhe, String chuyenBay, String gia, int trangThai, String nguoiDat, String email, String bayTu, String bayDen, String gioKhoiHanh, String gioKetThuc) {
+        MaVe = maVe;
+        NgayBay = ngayBay;
+        SoGhe = soGhe;
+        ChuyenBay = chuyenBay;
+        Gia = gia;
+        TrangThai = trangThai;
+        NguoiDat = nguoiDat;
+        Email = email;
+        BayTu = bayTu;
+        BayDen = bayDen;
+        GioKhoiHanh = gioKhoiHanh;
+        GioKetThuc = gioKetThuc;
+    }
+
+    public String getBayTu() {
+        return BayTu;
+    }
+
+    public void setBayTu(String bayTu) {
+        BayTu = bayTu;
+    }
+
+    public String getBayDen() {
+        return BayDen;
+    }
+
+    public void setBayDen(String bayDen) {
+        BayDen = bayDen;
+    }
+
+    public String getNgayBay() {
+        return NgayBay;
+    }
+
+    public void setNgayBay(String ngayBay) {
+        NgayBay = ngayBay;
+    }
+
+    public String getGioKhoiHanh() {
+        return GioKhoiHanh;
+    }
+
+    public void setGioKhoiHanh(String gioKhoiHanh) {
+        GioKhoiHanh = gioKhoiHanh;
+    }
+
+    public String getGioKetThuc() {
+        return GioKetThuc;
+    }
+
+    public void setGioKetThuc(String gioKetThuc) {
+        GioKetThuc = gioKetThuc;
     }
 
     public String getChuyenBay() {
@@ -29,14 +88,6 @@ public class Ve implements Serializable {
 
     public void setMaVe(String maVe) {
         MaVe = maVe;
-    }
-
-    public String getNgayDat() {
-        return NgayDat;
-    }
-
-    public void setNgayDat(String ngayDat) {
-        NgayDat = ngayDat;
     }
 
     public String getSoGhe() {
@@ -82,7 +133,7 @@ public class Ve implements Serializable {
     @Override
     public String toString() {
         return  " Mã vé: " + MaVe  +
-                "\n Ngày đặt: " + NgayDat  +
+                "\n Ngày bay: " + NgayBay  +
                 "\n Số ghế: " + SoGhe +
                 "\n Chuyến bay: " + ChuyenBay  +
                 "\n Giá: " + Gia  +

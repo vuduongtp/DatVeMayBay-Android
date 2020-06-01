@@ -45,10 +45,10 @@ public class GetUserInfoActivity extends AppCompatActivity {
                 }else if (txtEmail.getText().toString().trim().equalsIgnoreCase("")){
                     txtError.setText("Email không được để trống.");
                 }else {
-                    Toast.makeText(GetUserInfoActivity.this, "Đặt vé thành công.", Toast.LENGTH_SHORT).show();
-                    Intent myIntent = new Intent(GetUserInfoActivity.this, MainActivity.class);
+                    //Toast.makeText(GetUserInfoActivity.this, "Đặt vé thành công.", Toast.LENGTH_SHORT).show();
+                    Intent myIntent = new Intent(GetUserInfoActivity.this, BookingSucessActivity.class);
                     startActivity(myIntent);
-                    finishAffinity();
+                    //finishAffinity();
                 }
             }
         });

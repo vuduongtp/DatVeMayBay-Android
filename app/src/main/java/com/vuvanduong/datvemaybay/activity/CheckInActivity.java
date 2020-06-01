@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.navigation.NavigationView;
 import com.vuvanduong.datvemaybay.R;
+import com.vuvanduong.datvemaybay.adapter.TicketAdapter;
 import com.vuvanduong.datvemaybay.app.MyVolley;
 import com.vuvanduong.datvemaybay.config.Constant;
 import com.vuvanduong.datvemaybay.object.ChuyenBay;
@@ -32,6 +34,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class CheckInActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
@@ -39,8 +43,11 @@ public class CheckInActivity extends AppCompatActivity {
     Toolbar toolbar;
     EditText txtMaVe;
     Button btnCheckVe;
-    TextView txtError,txtTicketInfo;
+    TextView txtError;
     ProgressDialog dialog;
+    ListView lvTicket;
+    TicketAdapter ticketAdapter;
+    ArrayList<Ve> dsVe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +71,20 @@ public class CheckInActivity extends AppCompatActivity {
 
         txtMaVe = findViewById(R.id.txtTicketCode);
         btnCheckVe = findViewById(R.id.btnCheckInTicket);
-        txtTicketInfo = findViewById(R.id.txtTicketInfo);
+        //txtTicketInfo = findViewById(R.id.txtTicketInfo);
         txtError = findViewById(R.id.txtErrorCheckIn);
 
         dialog = new ProgressDialog(CheckInActivity.this);
         dialog.setTitle(getResources().getString(R.string.loading));
         dialog.setMessage(getResources().getString(R.string.please_wait));
         dialog.setCanceledOnTouchOutside(false);
+
+        lvTicket = findViewById(R.id.lvTicketCheckin);
+        dsVe = new ArrayList<>();
+        Ve ve = new Ve("V1","23/06/2020","25A","VJ001","1000000",0,"Vu Van Duong","abc","Ha Noi","Vinh","17:15","20:15");
+        dsVe.add(ve);
+        ticketAdapter = new TicketAdapter(CheckInActivity.this,R.layout.ticket_success_item,dsVe);
+        lvTicket.setAdapter(ticketAdapter);
     }
 
     private void addEvent() {
@@ -82,8 +96,8 @@ public class CheckInActivity extends AppCompatActivity {
                     txtError.setText("Mã vé không được để trống.");
                 }
                 else {
-                    txtTicketInfo.setText("");
-                    txtTicketInfo.setBackground(null);
+                   // txtTicketInfo.setText("");
+                   // txtTicketInfo.setBackground(null);
 
                     dialog.show();
                     // Hide after some seconds
@@ -122,7 +136,7 @@ public class CheckInActivity extends AppCompatActivity {
                                                 ve.setMaVe(response.getString("mave"));
                                             }
                                             if (response.has("ngaydat")) {
-                                                ve.setNgayDat(response.getString("ngaydat"));
+                                                ve.setNgayBay(response.getString("ngaydat"));
                                             }
                                             if (response.has("soghe")) {
                                                 ve.setSoGhe(response.getString("soghe"));
@@ -141,8 +155,8 @@ public class CheckInActivity extends AppCompatActivity {
                                                 ve.setEmail(response.getJSONObject("hoadon").getJSONObject("khachhang").getString("email"));
                                             }
 
-                                            txtTicketInfo.setText(ve.toString());
-                                            txtTicketInfo.setBackground(getResources().getDrawable(R.drawable.button_round_trip_unclick));
+                                           // txtTicketInfo.setText(ve.toString());
+                                            //txtTicketInfo.setBackground(getResources().getDrawable(R.drawable.button_round_trip_unclick));
                                             dialog.dismiss();
 
                                         } catch (JSONException e) {

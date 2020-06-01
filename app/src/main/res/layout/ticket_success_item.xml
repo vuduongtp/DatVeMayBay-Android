@@ -9,11 +9,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
         android:layout_height="40dp"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/txtBayTu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -24,14 +25,13 @@
             android:textSize="20sp" />
 
         <ImageView
-            android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/txtBayDen"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -43,36 +43,162 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/textBold"
+        android:text="Họ và tên:" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/txtHoTenVe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:textColor="@color/dark_blue"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="20sp"
+        android:layout_marginStart="11dp"
+        android:text="Nguyen Van A" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"></LinearLayout>
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/textBold"
+                android:text="Chuyến bay:" />
+
+            <TextView
+                android:id="@+id/txtChuyenBayVe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_blue"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="11dp"
+                android:text="VJ001" />
+        </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/textBold"
+                android:text="Ngày:" />
+
+            <TextView
+                android:id="@+id/txtNgayBayVe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_blue"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="11dp"
+                android:text="22/12/2020" />
+        </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/textBold"
+                android:text="Số ghế:" />
+
+            <TextView
+                android:id="@+id/txtSoGheVe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_blue"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="11dp"
+                android:text="25A" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/textBold"
+                android:text="Giờ khởi hành:" />
+
+            <TextView
+                android:id="@+id/txtGioKHoiHanhVe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_blue"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="11dp"
+                android:text="15:20" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/textBold"
+                android:text="Giờ kết thúc:" />
+
+            <TextView
+                android:id="@+id/txtGioKetThucVe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_blue"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="11dp"
+                android:text="17:20" />
+        </LinearLayout>
     </LinearLayout>
 
 

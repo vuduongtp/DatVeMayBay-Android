@@ -276,7 +276,7 @@ public class BookingActivity extends AppCompatActivity {
 
                     chuyenBayDi = new ArrayList<>();
 
-                    String url_demo = Constant.DOMAIN_NAME+ "api/chuyen-bay/get-by-query?ngayDi=17042020";
+                    String url_demo = Constant.DOMAIN_NAME+ "api/chuyen-bay/get-all";
                     String url_go = Constant.DOMAIN_NAME + "api/chuyen-bay/get-by-query?ngayDi=" + getNumberOfDate(txtDateGo.getText().toString()) + "&diemDi=" + idPlaceFrom + "&diemDen=" + idPlaceTo;
                     getChuyenBay task = new getChuyenBay();
                     task.execute(url_demo);

@@ -31,23 +31,23 @@
             android:orientation="vertical">
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#E8E5E5"
-                android:fontFamily="@font/roboto_bold"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/ready_checkin"
-                android:textColor="@color/textBold"
-                android:textSize="25sp" />
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="#E8E5E5"-->
+<!--                android:fontFamily="@font/roboto_bold"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="5dp"-->
+<!--                android:text="@string/ready_checkin"-->
+<!--                android:textColor="@color/textBold"-->
+<!--                android:textSize="25sp" />-->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#E8E5E5"
                 android:gravity="center"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="@string/guide_checkin"
                 android:textSize="15sp" />
 
@@ -78,26 +78,26 @@
                 android:ems="10"
                 android:inputType="textPersonName" />
 
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="15dp"-->
-<!--                android:layout_marginTop="15dp"-->
-<!--                android:layout_marginBottom="5dp"-->
-<!--                android:text="@string/first_name"-->
-<!--                android:textColor="@color/colorMain"-->
-<!--                android:textSize="16sp" />-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/first_name"
+                android:textColor="@color/colorMain"
+                android:textSize="16sp" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/editText2"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:layout_marginEnd="10dp"-->
-<!--                android:paddingStart="10dp"-->
-<!--                android:background="@drawable/custome_edittext_check"-->
-<!--                android:ems="10"-->
-<!--                android:inputType="textPersonName" />-->
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:paddingStart="10dp"
+                android:background="@drawable/custome_edittext_check"
+                android:ems="10"
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/txtErrorCheckIn"
@@ -121,19 +121,25 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 
-            <TextView
-                android:id="@+id/txtTicketInfo"
+<!--            <TextView-->
+<!--                android:id="@+id/txtTicketInfo"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:padding="10dp"-->
+<!--                android:textSize="18sp"-->
+<!--                android:fontFamily="@font/roboto_light"-->
+<!--                android:gravity="left"-->
+<!--                android:text=""-->
+<!--                android:textColor="@color/dark_blue" />-->
+
+            <ListView
+                android:id="@+id/lvTicketCheckin"
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginStart="10dp"
-                android:padding="10dp"
-                android:textSize="18sp"
-                android:fontFamily="@font/roboto_light"
-                android:gravity="left"
-                android:text=""
-                android:textColor="@color/dark_blue" />
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
