@@ -10,6 +10,7 @@ import android.view.Menu;
 import com.android.volley.toolbox.Volley;
 import com.vuvanduong.datvemaybay.R;
 import com.vuvanduong.datvemaybay.app.InitialApp;
+import com.vuvanduong.datvemaybay.notify.NotifyService;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -17,6 +18,8 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+        startService(new Intent().setClass(this, NotifyService.class));
 
         int SPLASH_DISPLAY_LENGTH = 2000;
         new Handler().postDelayed(new Runnable(){

@@ -8,12 +8,20 @@
     <application
         android:name=".app.InitialApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/airplane"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/airplane"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.BookingSucessActivity"></activity>
+        <activity android:name=".mail.ConfirmCodeActivity"></activity>
+        <activity android:name=".notify.NoiDungActivity" />
+        <activity android:name=".notify.XemActivity" />
+
+        <service
+            android:name=".notify.NotifyService"
+            android:label="@string/app_name" />
+
+        <activity android:name=".activity.BookingSucessActivity" />
         <activity android:name=".activity.GetUserInfoActivity" />
         <activity android:name=".activity.WelcomeActivity" />
         <activity

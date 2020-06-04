@@ -104,14 +104,14 @@
                 android:inputType="textPersonName" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
-                android:text="@string/email"
-                android:textColor="@color/colorMain"
-                android:textSize="16sp" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/email"
+            android:textColor="@color/colorMain"
+            android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/txtEmail1"
@@ -123,6 +123,27 @@
                 android:background="@drawable/custome_edittext_check"
                 android:ems="10"
                 android:inputType="textPersonName" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="Số điện thoại:"
+                android:textColor="@color/colorMain"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtPhoneNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:paddingStart="10dp"
+                android:background="@drawable/custome_edittext_check"
+                android:ems="10"
+                android:inputType="phone" />
 
             <TextView
                 android:id="@+id/txtErrorUserInfo"

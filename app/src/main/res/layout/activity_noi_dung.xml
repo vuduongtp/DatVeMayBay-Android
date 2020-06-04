@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".notify.NoiDungActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_shape_layout_border"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E8E5E5"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:textColor="@color/dark_blue"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="18sp"
+        android:text="Thông Báo" />
+
+    <TextView
+        android:id="@+id/txtTieuDeND"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:gravity="left"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:textColor="@color/dark_blue"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="20sp"
+        android:text="Khuyen mai 50%" />
+
+    <TextView
+        android:id="@+id/txtThoiGianND"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="14-10-2020   8:15" />
+
+    <TextView
+        android:id="@+id/txtNoiDungND"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/textBold"
+        android:textSize="18sp"
+        android:padding="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Day la noi dung" />
+
+    </LinearLayout>
+</LinearLayout>
