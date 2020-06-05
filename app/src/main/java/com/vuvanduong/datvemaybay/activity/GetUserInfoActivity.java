@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.vuvanduong.datvemaybay.R;
 import com.vuvanduong.datvemaybay.mail.ConfirmCodeActivity;
 import com.vuvanduong.datvemaybay.mail.GMailSender;
+import com.vuvanduong.datvemaybay.notify.NotifyService;
 
 public class GetUserInfoActivity extends AppCompatActivity {
 
@@ -39,29 +40,19 @@ public class GetUserInfoActivity extends AppCompatActivity {
         addEvent();
     }
 
-    public static String getAlphaNumericString(int n)
-    {
-
-        // chose a Character random from this String
+    public static String getAlphaNumericString(int n) {
 //        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 //                + "0123456789"
 //                + "abcdefghijklmnopqrstuvxyz";
-
-        // create StringBuffer size of AlphaNumericString
-
         String AlphaNumericString = "0123456789";
 
         StringBuilder sb = new StringBuilder(n);
 
         for (int i = 0; i < n; i++) {
-
-            // generate a random number between
-            // 0 to AlphaNumericString variable length
             int index
                     = (int)(AlphaNumericString.length()
                     * Math.random());
 
-            // add Character one by one in end of sb
             sb.append(AlphaNumericString
                     .charAt(index));
         }
@@ -94,7 +85,11 @@ public class GetUserInfoActivity extends AppCompatActivity {
                     Bundle bundle = new Bundle();
                     bundle.putString("tieuDe", tieuDe);
                     bundle.putString("noiDung", noiDung);
-                    bundle.putString("emailTo", txtEmail.getText().toString().trim());
+                    bundle.putString("email", txtEmail.getText().toString().trim());
+                    bundle.putString("ho", txtFirstName.getText().toString().trim());
+                    bundle.putString("ten", txtLastName.getText().toString().trim());
+                    bundle.putString("SDT", txtPhone.getText().toString().trim());
+                    bundle.putString("CMND", txtIDNumber.getText().toString().trim());
 
                     guiMail myTask = new guiMail();
                     myTask.execute(bundle);
@@ -113,6 +108,9 @@ public class GetUserInfoActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.txtEmail1);
         txtPhone = findViewById(R.id.txtPhoneNum);
         txtError = findViewById(R.id.txtErrorUserInfo);
+
+        maChuyenBayDi = this.getIntent().getStringExtra("maChuyenBayDi");
+        maChuyenBayVe = this.getIntent().getStringExtra("maChuyenBayVe");
     }
 
     class guiMail extends AsyncTask<Bundle, Void, Void> {
@@ -122,7 +120,11 @@ public class GetUserInfoActivity extends AppCompatActivity {
             Bundle b = bundles[0];
             String tieuDe = b.getString("tieuDe");
             String noiDung = b.getString("noiDung");
-            String emailTo = b.getString("emailTo");
+            String emailTo = b.getString("email");
+            String ho = b.getString("ho");
+            String ten = b.getString("ten");
+            String SDT = b.getString("SDT");
+            String CMND = b.getString("CMND");
             //System.out.println(tieuDe+"/"+noiDung+"/"+emailTo);
             try {
                 // System.out.println("chay vo day");
@@ -131,9 +133,17 @@ public class GetUserInfoActivity extends AppCompatActivity {
                         noiDung,
                         "mailsenderptithcm@gmail.com",
                         emailTo);
+
                 dialog.dismiss();
                 Intent myIntent = new Intent(GetUserInfoActivity.this, ConfirmCodeActivity.class);
                 myIntent.putExtra("code", randomNumber);
+                myIntent.putExtra("maChuyenBayDi", maChuyenBayDi);
+                myIntent.putExtra("maChuyenBayVe", maChuyenBayVe);
+                myIntent.putExtra("ho", ho);
+                myIntent.putExtra("ten", ten);
+                myIntent.putExtra("CMND", CMND);
+                myIntent.putExtra("email", emailTo);
+                myIntent.putExtra("SDT", SDT);
                 startActivity(myIntent);
                 //System.out.println("chay vo day");
             } catch (Exception e) {

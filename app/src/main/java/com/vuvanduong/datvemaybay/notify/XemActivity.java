@@ -47,6 +47,12 @@ public class XemActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     private void setControl() {
         lvThongBao = findViewById(R.id.lvThongBao);
         dsThongBao=new ArrayList<>();

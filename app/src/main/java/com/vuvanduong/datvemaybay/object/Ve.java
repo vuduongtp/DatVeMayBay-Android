@@ -132,13 +132,15 @@ public class Ve implements Serializable {
 
     @Override
     public String toString() {
-        return  " Mã vé: " + MaVe  +
+        return  " Mã đặt chỗ: " + MaVe  +
                 "\n Ngày bay: " + NgayBay  +
                 "\n Số ghế: " + SoGhe +
                 "\n Chuyến bay: " + ChuyenBay  +
-                "\n Giá: " + Gia  +
-                "\n Trạng thái: " + TrangThai +
-                "\n Người đặt: " + NguoiDat  +
-                "\n Email: " + Email ;
+                "\n Từ: " + BayTu  +
+                "\n Đến: " + BayDen  +
+                "\n Họ tên: " + NguoiDat  +
+                "\n Email: " + Email +
+                "\n Giờ khởi hành: " + GioKhoiHanh+
+                "\n Giờ kết thúc: " + GioKetThuc;
     }
 }

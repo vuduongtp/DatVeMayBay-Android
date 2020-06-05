@@ -10,13 +10,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginTop="5dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtBayTu"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
@@ -33,7 +33,7 @@
         <TextView
             android:id="@+id/txtBayDen"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
@@ -42,23 +42,66 @@
             android:textSize="20sp" />
     </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:fontFamily="@font/roboto_regular"
-        android:textColor="@color/textBold"
-        android:text="Họ và tên:" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/txtHoTenVe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/dark_blue"
-        android:fontFamily="@font/roboto_regular"
-        android:textSize="20sp"
-        android:layout_marginStart="11dp"
-        android:text="Nguyen Van A" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/textBold"
+                android:text="Mã đặt chỗ:" />
+
+
+            <TextView
+                android:id="@+id/txtMaDatChoVe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_blue"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="11dp"
+                android:text="V123" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/textBold"
+                android:text="Họ và tên:" />
+
+
+            <TextView
+                android:id="@+id/txtHoTenVe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_blue"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="11dp"
+                android:text="Nguyen Van A" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

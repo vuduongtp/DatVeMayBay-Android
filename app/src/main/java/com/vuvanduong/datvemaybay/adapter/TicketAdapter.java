@@ -45,7 +45,7 @@ public class TicketAdapter extends ArrayAdapter<Ve> {
     }
 
     static class ViewHolder {
-        TextView txtBayTu,txtBayDen,txtHoTenVe,txtChuyenBayVe,txtNgayBayVe,txtSoGheVe,txtGioKHoiHanhVe,txtGioKetThucVe;
+        TextView txtBayTu,txtBayDen,txtHoTenVe,txtChuyenBayVe,txtNgayBayVe,txtSoGheVe,txtGioKHoiHanhVe,txtGioKetThucVe,txtMaDatChoVe;
     }
 
     @NonNull
@@ -67,6 +67,7 @@ public class TicketAdapter extends ArrayAdapter<Ve> {
             holder.txtSoGheVe = convertView.findViewById(R.id.txtSoGheVe);
             holder.txtGioKHoiHanhVe = convertView.findViewById(R.id.txtGioKHoiHanhVe);
             holder.txtGioKetThucVe = convertView.findViewById(R.id.txtGioKetThucVe);
+            holder.txtMaDatChoVe = convertView.findViewById(R.id.txtMaDatChoVe);
             convertView.setTag(holder);
         }else {
             holder = (ViewHolder) convertView.getTag();
@@ -80,6 +81,7 @@ public class TicketAdapter extends ArrayAdapter<Ve> {
         holder.txtSoGheVe.setText(ve.getSoGhe());
         holder.txtGioKHoiHanhVe.setText(ve.getGioKhoiHanh());
         holder.txtGioKetThucVe.setText(ve.getGioKetThuc());
+        holder.txtMaDatChoVe.setText(ve.getMaVe());
 
         return convertView;
     }

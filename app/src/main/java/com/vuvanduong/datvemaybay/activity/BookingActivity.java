@@ -23,6 +23,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -35,6 +36,7 @@ import com.vuvanduong.datvemaybay.R;
 import com.vuvanduong.datvemaybay.app.InitialApp;
 import com.vuvanduong.datvemaybay.app.MyVolley;
 import com.vuvanduong.datvemaybay.config.Constant;
+import com.vuvanduong.datvemaybay.notify.XemActivity;
 import com.vuvanduong.datvemaybay.object.ChuyenBay;
 import com.vuvanduong.datvemaybay.object.SanBay;
 
@@ -99,6 +101,23 @@ public class BookingActivity extends AppCompatActivity {
                     case R.id.menu_home:
                         Intent intentHome = new Intent(BookingActivity.this, MainActivity.class);
                         startActivity(intentHome);
+                        finish();
+                        break;
+
+                    case R.id.menu_notify:
+                        Intent menu_notify = new Intent(BookingActivity.this, XemActivity.class);
+                        startActivity(menu_notify);
+                        break;
+
+                    case R.id.menu_checkin:
+                        Intent menu_checkin = new Intent(BookingActivity.this, CheckInActivity.class);
+                        startActivity(menu_checkin);
+                        finish();
+                        break;
+
+                    case R.id.menu_my_trip:
+                        Intent menu_my_trip = new Intent(BookingActivity.this, FlightActivity.class);
+                        startActivity(menu_my_trip);
                         finish();
                         break;
                 }
@@ -276,10 +295,10 @@ public class BookingActivity extends AppCompatActivity {
 
                     chuyenBayDi = new ArrayList<>();
 
-                    String url_demo = Constant.DOMAIN_NAME+ "api/chuyen-bay/get-all";
+                    //String url_demo = Constant.DOMAIN_NAME+ "api/chuyen-bay/get-all";
                     String url_go = Constant.DOMAIN_NAME + "api/chuyen-bay/get-by-query?ngayDi=" + getNumberOfDate(txtDateGo.getText().toString()) + "&diemDi=" + idPlaceFrom + "&diemDen=" + idPlaceTo;
                     getChuyenBay task = new getChuyenBay();
-                    task.execute(url_demo);
+                    task.execute(url_go);
 
                 }
             }
@@ -329,7 +348,7 @@ public class BookingActivity extends AppCompatActivity {
         idPlaceTo = intentPlaceFragment.getStringExtra("idPlaceArrival");
 
         dialog = new ProgressDialog(BookingActivity.this);
-        dialog.setTitle(getResources().getString(R.string.loading));
+        dialog.setTitle("");
         dialog.setMessage(getResources().getString(R.string.please_wait));
         dialog.setCanceledOnTouchOutside(false);
 
@@ -514,8 +533,8 @@ public class BookingActivity extends AppCompatActivity {
                                         if (jsonObject.has("ves")) {
                                             chuyenBay.setSoLuongVe(jsonObject.getJSONArray("ves").length());
                                         }
-                                        chuyenBays.add(chuyenBay);
-                                        System.out.println("Size:" + chuyenBays.size());
+//                                        chuyenBays.add(chuyenBay);
+//                                        System.out.println("Size:" + chuyenBays.size());
                                         chuyenBayDi.add(chuyenBay);
                                         System.out.println("Size 2:" + chuyenBayDi.size());
 
@@ -552,6 +571,7 @@ public class BookingActivity extends AppCompatActivity {
 
                                     } catch (Exception e) {
                                         e.printStackTrace();
+                                        dialog.dismiss();
                                     }
                                 }
                             }
@@ -560,6 +580,8 @@ public class BookingActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Log.e("loi", error.toString());
+                                dialog.dismiss();
+                                Toast.makeText(BookingActivity.this, "Không tìm thấy chuyến bay.", Toast.LENGTH_SHORT).show();
                             }
                         });
 

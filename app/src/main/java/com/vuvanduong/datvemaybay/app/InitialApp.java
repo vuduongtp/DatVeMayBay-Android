@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Intent;
 
 import com.vuvanduong.datvemaybay.activity.WelcomeActivity;
+import com.vuvanduong.datvemaybay.mail.GMailSender;
 
 public class InitialApp extends Application {
 

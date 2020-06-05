@@ -53,4 +53,9 @@
     <string name="english" translatable="false">Tiếng Anh</string>
     <string name="vietnamese" translatable="false">Tiếng Việt</string>
     <string name="japanese" translatable="false">Tiếng Nhật</string>
+    <string name="notify">Thông báo</string>
+    <string name="user_info">Thông tin đặt vé</string>
+    <string name="last_name">Tên:</string>
+    <string name="ID_code">Chứng minh nhân dân:</string>
+    <string name="email">Địa chỉ Email:</string>
 </resources>

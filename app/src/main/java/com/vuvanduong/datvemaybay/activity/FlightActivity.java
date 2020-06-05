@@ -1,9 +1,11 @@
 package com.vuvanduong.datvemaybay.activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.DatePickerDialog;
@@ -12,6 +14,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -30,6 +33,7 @@ import com.vuvanduong.datvemaybay.R;
 import com.vuvanduong.datvemaybay.adapter.FlightAdapter;
 import com.vuvanduong.datvemaybay.app.MyVolley;
 import com.vuvanduong.datvemaybay.config.Constant;
+import com.vuvanduong.datvemaybay.notify.XemActivity;
 import com.vuvanduong.datvemaybay.object.ChuyenBay;
 import com.vuvanduong.datvemaybay.object.SanBay;
 
@@ -82,7 +86,7 @@ public class FlightActivity extends AppCompatActivity {
         toggle.syncState();
 
         dialog = new ProgressDialog(FlightActivity.this);
-        dialog.setTitle(getResources().getString(R.string.loading));
+        dialog.setTitle("");
         dialog.setMessage(getResources().getString(R.string.please_wait));
         dialog.setCanceledOnTouchOutside(false);
 
@@ -105,6 +109,42 @@ public class FlightActivity extends AppCompatActivity {
     }
 
     private void addEvent() {
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.menu_booking:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        finish();
+                        break;
+                    case R.id.menu_home:
+                        Intent intentHome = new Intent(FlightActivity.this, MainActivity.class);
+                        startActivity(intentHome);
+                        finish();
+                        break;
+
+                    case R.id.menu_notify:
+                        Intent menu_notify = new Intent(FlightActivity.this, XemActivity.class);
+                        startActivity(menu_notify);
+                        break;
+
+                    case R.id.menu_checkin:
+                        Intent menu_checkin = new Intent(FlightActivity.this, CheckInActivity.class);
+                        startActivity(menu_checkin);
+                        finish();
+                        break;
+
+                    case R.id.menu_my_trip:
+                        Intent menu_my_trip = new Intent(FlightActivity.this, FlightActivity.class);
+                        startActivity(menu_my_trip);
+                        finish();
+                        break;
+                }
+                return true;
+            }
+        });
+
         from.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,10 +185,12 @@ public class FlightActivity extends AppCompatActivity {
             }
         });
 
+
         btnCheck.setOnClickListener(new View.OnClickListener() {
-            String url_demo = Constant.DOMAIN_NAME+ "api/chuyen-bay/get-by-query?ngayDi=17042020";
             @Override
             public void onClick(View v) {
+                String url_demo = Constant.DOMAIN_NAME+ "api/chuyen-bay/get-by-query?ngayDi=" + getNumberOfDate(txtDate.getText().toString()) + "&diemDi=" + idPlaceFrom + "&diemDen=" + idPlaceTo;
+                System.out.println(url_demo);
                 dialog.show();
                 chuyenBayDi.clear();
                 RequestQueue queue = MyVolley.getRequestQueue();
@@ -216,6 +258,7 @@ public class FlightActivity extends AppCompatActivity {
                                     }
                                 }catch (JSONException e){
                                     e.printStackTrace();
+                                    dialog.dismiss();
                                 }
                             }
                         },
@@ -223,6 +266,7 @@ public class FlightActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error){
                                 // Do something when error occurred
+                                dialog.dismiss();
 
                             }
                         }
@@ -238,6 +282,15 @@ public class FlightActivity extends AppCompatActivity {
         if (input.length()<2){
             return "0"+input;
         }else return input;
+    }
+
+    private String getNumberOfDate(String date){
+        String[] date_cut=date.split("/");
+        StringBuilder result = new StringBuilder();
+        for (String s : date_cut) {
+            result.append(s);
+        }
+        return result.toString();
     }
 
     private class getAirportStatus extends AsyncTask<Void, Void, Void> {

@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vuvanduong.datvemaybay.R;
+import com.vuvanduong.datvemaybay.mail.GMailSender;
 
 public class NotifyService  extends Service {
 
@@ -72,6 +73,8 @@ public class NotifyService  extends Service {
 
             }
         });
+
+       
     }
 
     @Override

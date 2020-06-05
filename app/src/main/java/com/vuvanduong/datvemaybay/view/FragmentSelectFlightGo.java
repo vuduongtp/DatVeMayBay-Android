@@ -75,7 +75,7 @@ public class FragmentSelectFlightGo extends Fragment {
         ListView lvFlight = view.findViewById(R.id.lvFlight);
 
         dialog = new ProgressDialog(getActivity());
-        dialog.setTitle(getResources().getString(R.string.loading));
+        dialog.setTitle("");
         dialog.setMessage(getResources().getString(R.string.please_wait));
         dialog.setCanceledOnTouchOutside(false);
 
@@ -118,7 +118,7 @@ public class FragmentSelectFlightGo extends Fragment {
                         RequestQueue queue = MyVolley.getRequestQueue();
                         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                                 Request.Method.GET,
-                                urlGo,
+                                urlArrival,
                                 null,
                                 new Response.Listener<JSONArray>() {
                                     @Override
@@ -195,6 +195,7 @@ public class FragmentSelectFlightGo extends Fragment {
                                             }
                                         }catch (JSONException e){
                                             e.printStackTrace();
+                                            dialog.dismiss();
                                         }
                                     }
                                 },
@@ -202,6 +203,8 @@ public class FragmentSelectFlightGo extends Fragment {
                                     @Override
                                     public void onErrorResponse(VolleyError error){
                                         // Do something when error occurred
+                                        dialog.dismiss();
+                                        Toast.makeText(getActivity(), "Không tìm thấy chuyến bay.", Toast.LENGTH_SHORT).show();
 
                                     }
                                 }
@@ -212,15 +215,15 @@ public class FragmentSelectFlightGo extends Fragment {
                     }else {
                         if (!isRoundTrip) {
                             maChuyenBayDi = chuyenBay.getMaChuyenBay();
-                            Toast.makeText(getActivity(),"Chuyen bay di"+ maChuyenBayDi, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(),"Chuyen bay di "+ maChuyenBayDi, Toast.LENGTH_SHORT).show();
                             Intent myIntent = new Intent(getActivity(), GetUserInfoActivity.class);
                             myIntent.putExtra("maChuyenBayDi", maChuyenBayDi);
                             startActivity(myIntent);
                         }
                         else {
                             maChuyenBayVe=chuyenBay.getMaChuyenBay();
-                            Toast.makeText(getActivity(),"Chuyen bay di"+ maChuyenBayDi, Toast.LENGTH_SHORT).show();
-                            Toast.makeText(getActivity(),"Chuyen bay ve"+ maChuyenBayVe, Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getActivity(),"Chuyen bay di "+ maChuyenBayDi, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(),"Chuyen bay ve "+ maChuyenBayVe, Toast.LENGTH_SHORT).show();
                             Intent myIntent = new Intent(getActivity(), GetUserInfoActivity.class);
                             myIntent.putExtra("maChuyenBayDi", maChuyenBayDi);
                             myIntent.putExtra("maChuyenBayVe", maChuyenBayVe);

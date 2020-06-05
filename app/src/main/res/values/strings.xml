@@ -10,6 +10,7 @@
     <string name="nav_my_trip">Flight</string>
     <string name="more">More</string>
     <string name="history_booking">History booking</string>
+    <string name="notify">Notification</string>
     <string name="my_seat">My seat</string>
 
     <string name="cheap_ticket">Cheap ticket, daily, everyday</string>

@@ -83,9 +83,9 @@ public class SelectFlightActivity extends AppCompatActivity {
         String strDateYesterday = Constant.sdf.format(dateYesterday);
 
         if (isFromBooking) {
-            txtFromTo.setText("Please select flight go.\n"+noiDi + " - " + noiDen);
+            txtFromTo.setText("Chọn chuyến bay đi.\n"+noiDi + " - " + noiDen);
         }else {
-            txtFromTo.setText("Please select flight arrival.\n"+noiDi + " - " + noiDen);
+            txtFromTo.setText("Chọn chuyến bay về.\n"+noiDi + " - " + noiDen);
         }
         txtDate2.setText(ngayDi);
         txtDate1.setText(strDateYesterday);

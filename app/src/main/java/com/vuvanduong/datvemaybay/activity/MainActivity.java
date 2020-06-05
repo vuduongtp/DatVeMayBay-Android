@@ -18,6 +18,7 @@ import android.widget.Button;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.vuvanduong.datvemaybay.R;
+import com.vuvanduong.datvemaybay.notify.XemActivity;
 import com.vuvanduong.datvemaybay.view.FragmentFamousPlace;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,6 +50,23 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_booking:
                         Intent intentBooking = new Intent(MainActivity.this, BookingActivity.class);
                         startActivity(intentBooking);
+                        break;
+
+                    case R.id.menu_notify:
+                        Intent menu_notify = new Intent(MainActivity.this, XemActivity.class);
+                        startActivity(menu_notify);
+                        break;
+
+                    case R.id.menu_checkin:
+                        Intent menu_checkin = new Intent(MainActivity.this, CheckInActivity.class);
+                        startActivity(menu_checkin);
+                        finish();
+                        break;
+
+                    case R.id.menu_my_trip:
+                        Intent menu_my_trip = new Intent(MainActivity.this, FlightActivity.class);
+                        startActivity(menu_my_trip);
+                        finish();
                         break;
                 }
                 return true;
