@@ -1,8 +1,11 @@
 package com.vuvanduong.datvemaybay.object;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
-public class Ve implements Serializable {
+public class Ve implements Serializable, Parcelable {
     private String MaVe;
     private String NgayBay;
     private String SoGhe;
@@ -33,6 +36,33 @@ public class Ve implements Serializable {
         GioKhoiHanh = gioKhoiHanh;
         GioKetThuc = gioKetThuc;
     }
+
+    protected Ve(Parcel in) {
+        MaVe = in.readString();
+        NgayBay = in.readString();
+        SoGhe = in.readString();
+        ChuyenBay = in.readString();
+        Gia = in.readString();
+        TrangThai = in.readInt();
+        NguoiDat = in.readString();
+        Email = in.readString();
+        BayTu = in.readString();
+        BayDen = in.readString();
+        GioKhoiHanh = in.readString();
+        GioKetThuc = in.readString();
+    }
+
+    public static final Creator<Ve> CREATOR = new Creator<Ve>() {
+        @Override
+        public Ve createFromParcel(Parcel in) {
+            return new Ve(in);
+        }
+
+        @Override
+        public Ve[] newArray(int size) {
+            return new Ve[size];
+        }
+    };
 
     public String getBayTu() {
         return BayTu;
@@ -142,5 +172,26 @@ public class Ve implements Serializable {
                 "\n Email: " + Email +
                 "\n Giờ khởi hành: " + GioKhoiHanh+
                 "\n Giờ kết thúc: " + GioKetThuc;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(MaVe);
+        dest.writeString(NgayBay);
+        dest.writeString(SoGhe);
+        dest.writeString(ChuyenBay);
+        dest.writeString(Gia);
+        dest.writeInt(TrangThai);
+        dest.writeString(NguoiDat);
+        dest.writeString(Email);
+        dest.writeString(BayTu);
+        dest.writeString(BayDen);
+        dest.writeString(GioKhoiHanh);
+        dest.writeString(GioKetThuc);
     }
 }

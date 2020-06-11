@@ -17,11 +17,15 @@ import com.vuvanduong.datvemaybay.R;
 import com.vuvanduong.datvemaybay.mail.ConfirmCodeActivity;
 import com.vuvanduong.datvemaybay.mail.GMailSender;
 import com.vuvanduong.datvemaybay.notify.NotifyService;
+import com.vuvanduong.datvemaybay.object.Ve;
+
+import java.util.ArrayList;
 
 public class GetUserInfoActivity extends AppCompatActivity {
 
     String maChuyenBayDi = "";
     String maChuyenBayVe = "";
+    int soLuong=0;
     Button btnConfirm;
     EditText txtFirstName, txtLastName, txtIDNumber, txtEmail, txtPhone;
     TextView txtError;
@@ -35,6 +39,7 @@ public class GetUserInfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         maChuyenBayDi = intent.getStringExtra("maChuyenBayDi");
         maChuyenBayVe = intent.getStringExtra("maChuyenBayVe");
+        soLuong = intent.getIntExtra("soLuong",1);
 
         addControl();
         addEvent();
@@ -83,6 +88,7 @@ public class GetUserInfoActivity extends AppCompatActivity {
                             "Loading...", true);
 
                     Bundle bundle = new Bundle();
+                    bundle.putInt("soLuong", soLuong);
                     bundle.putString("tieuDe", tieuDe);
                     bundle.putString("noiDung", noiDung);
                     bundle.putString("email", txtEmail.getText().toString().trim());
@@ -93,6 +99,7 @@ public class GetUserInfoActivity extends AppCompatActivity {
 
                     guiMail myTask = new guiMail();
                     myTask.execute(bundle);
+
                     //Toast.makeText(GetUserInfoActivity.this, "Đặt vé thành công.", Toast.LENGTH_SHORT).show();
                     //finishAffinity();
                 }
@@ -118,6 +125,7 @@ public class GetUserInfoActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Bundle... bundles) {
             Bundle b = bundles[0];
+            int soLuong = b.getInt("soLuong");
             String tieuDe = b.getString("tieuDe");
             String noiDung = b.getString("noiDung");
             String emailTo = b.getString("email");
@@ -129,13 +137,11 @@ public class GetUserInfoActivity extends AppCompatActivity {
             try {
                 // System.out.println("chay vo day");
                 GMailSender sender = new GMailSender("mailsenderptithcm@gmail.com", "ptithcm123");
-                sender.sendMail(tieuDe,
-                        noiDung,
-                        "mailsenderptithcm@gmail.com",
-                        emailTo);
+                sender.sendMail(tieuDe,noiDung,"mailsenderptithcm@gmail.com", emailTo);
 
                 dialog.dismiss();
                 Intent myIntent = new Intent(GetUserInfoActivity.this, ConfirmCodeActivity.class);
+                myIntent.putExtra("soLuong", soLuong);
                 myIntent.putExtra("code", randomNumber);
                 myIntent.putExtra("maChuyenBayDi", maChuyenBayDi);
                 myIntent.putExtra("maChuyenBayVe", maChuyenBayVe);

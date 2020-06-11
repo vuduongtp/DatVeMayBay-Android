@@ -218,6 +218,7 @@ public class FragmentSelectFlightGo extends Fragment {
                             //Toast.makeText(getActivity(),"Chuyen bay di "+ maChuyenBayDi, Toast.LENGTH_SHORT).show();
                             Intent myIntent = new Intent(getActivity(), GetUserInfoActivity.class);
                             myIntent.putExtra("maChuyenBayDi", maChuyenBayDi);
+                            myIntent.putExtra("soLuong", soLuong);
                             startActivity(myIntent);
                         }
                         else {
@@ -227,6 +228,7 @@ public class FragmentSelectFlightGo extends Fragment {
                             Intent myIntent = new Intent(getActivity(), GetUserInfoActivity.class);
                             myIntent.putExtra("maChuyenBayDi", maChuyenBayDi);
                             myIntent.putExtra("maChuyenBayVe", maChuyenBayVe);
+                            myIntent.putExtra("soLuong", soLuong);
                             startActivity(myIntent);
                         }
                     }

@@ -23,11 +23,10 @@ public class BookingSucessActivity extends AppCompatActivity {
 
     ListView lvTicket;
     TicketAdapter ticketAdapter;
-    ArrayList<Ve> dsVe;
+    ArrayList<Ve> dsVeDat;
     Button btnReturnHome;
     TextView txtSumMoney;
     ProgressDialog dialog;
-    Ve ve;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,24 +86,27 @@ public class BookingSucessActivity extends AppCompatActivity {
         lvTicket = findViewById(R.id.lvTicket);
         btnReturnHome = findViewById(R.id.btnReturnHome);
         txtSumMoney = findViewById(R.id.txtSumMoney);
-        dsVe = new ArrayList<>();
+        dsVeDat = new ArrayList<>();
         //Ve ve = new Ve("V1","23/06/2020","25A","VJ001","1000000",0,"Vu Van Duong","abc","Ha Noi","Vinh","17:15","20:15");
-        ve = (Ve) this.getIntent().getSerializableExtra("ve");
-        dsVe.add(ve);
-        ticketAdapter = new TicketAdapter(BookingSucessActivity.this,R.layout.ticket_success_item,dsVe);
+        dsVeDat = this.getIntent().getParcelableArrayListExtra("dsVeDat");
+        assert dsVeDat != null;
+        ticketAdapter = new TicketAdapter(BookingSucessActivity.this,R.layout.ticket_success_item,dsVeDat);
         lvTicket.setAdapter(ticketAdapter);
-        txtSumMoney.setText(ve.getGia()+" đ");
+        txtSumMoney.setText(dsVeDat.get(0).getGia()+" đ");
 
 
         dialog = ProgressDialog.show(BookingSucessActivity.this, "",
                 "Loading...", true);
         String tieuDe="Đặt vé thành công PTITAirlines";
-        String noiDung="\tThông tin vé của bạn:\n\n"+ve.toString();
+        StringBuilder noiDung= new StringBuilder("Thông tin vé của bạn:\n" );
+        for (int i=0; i<dsVeDat.size();i++){
+            noiDung.append("\n\n").append(dsVeDat.get(i).toString());
+        }
 
         Bundle bundle = new Bundle();
         bundle.putString("tieuDe", tieuDe);
-        bundle.putString("noiDung", noiDung);
-        bundle.putString("email", ve.getEmail());
+        bundle.putString("noiDung", noiDung.toString());
+        bundle.putString("email", dsVeDat.get(0).getEmail());
 
         guiMail myTask = new guiMail();
         myTask.execute(bundle);
