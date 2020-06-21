@@ -25,9 +25,9 @@
             android:icon="@drawable/ic_notifications_black_24dp"
             android:title="@string/notify" />
         <item
-            android:id="@+id/menu_my_seat"
-            android:icon="@drawable/ic_airline_seat_recline_normal_black_24dp"
-            android:title="@string/my_seat" />
+            android:id="@+id/menu_language"
+            android:icon="@drawable/ic_language_black_24dp"
+            android:title="@string/language" />
 
     </group>
 

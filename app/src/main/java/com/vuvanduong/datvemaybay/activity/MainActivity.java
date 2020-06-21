@@ -9,8 +9,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -18,8 +20,10 @@ import android.widget.Button;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.vuvanduong.datvemaybay.R;
-import com.vuvanduong.datvemaybay.notify.XemActivity;
+import com.vuvanduong.datvemaybay.config.LocaleHelper;
+import com.vuvanduong.datvemaybay.view.DialogLanguage;
 import com.vuvanduong.datvemaybay.view.FragmentFamousPlace;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
         addEvent();
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base, PreferenceManager.getDefaultSharedPreferences(base).getString(LocaleHelper.SELECTED_LANGUAGE, "vi")));
+    }
+
+
     private void addEvent() {
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -53,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.menu_notify:
-                        Intent menu_notify = new Intent(MainActivity.this, XemActivity.class);
-                        startActivity(menu_notify);
+                        //Intent menu_notify = new Intent(MainActivity.this, XemActivity.class);
+                        //startActivity(menu_notify);
                         break;
 
                     case R.id.menu_checkin:
@@ -63,10 +73,9 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                         break;
 
-                    case R.id.menu_my_trip:
-                        Intent menu_my_trip = new Intent(MainActivity.this, FlightActivity.class);
-                        startActivity(menu_my_trip);
-                        finish();
+                    case R.id.menu_language:
+                        DialogLanguage cdd=new DialogLanguage(MainActivity.this);
+                        cdd.show();
                         break;
                 }
                 return true;

@@ -32,7 +32,6 @@ import com.vuvanduong.datvemaybay.R;
 import com.vuvanduong.datvemaybay.adapter.TicketAdapter;
 import com.vuvanduong.datvemaybay.app.MyVolley;
 import com.vuvanduong.datvemaybay.config.Constant;
-import com.vuvanduong.datvemaybay.notify.XemActivity;
 import com.vuvanduong.datvemaybay.object.ChuyenBay;
 import com.vuvanduong.datvemaybay.object.Ve;
 
@@ -117,8 +116,8 @@ public class CheckInActivity extends AppCompatActivity {
                         break;
 
                     case R.id.menu_notify:
-                        Intent menu_notify = new Intent(CheckInActivity.this, XemActivity.class);
-                        startActivity(menu_notify);
+                        //Intent menu_notify = new Intent(CheckInActivity.this, XemActivity.class);
+                        //startActivity(menu_notify);
                         finish();
                         break;
 

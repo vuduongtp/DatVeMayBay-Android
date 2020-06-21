@@ -33,7 +33,6 @@ import com.vuvanduong.datvemaybay.R;
 import com.vuvanduong.datvemaybay.adapter.FlightAdapter;
 import com.vuvanduong.datvemaybay.app.MyVolley;
 import com.vuvanduong.datvemaybay.config.Constant;
-import com.vuvanduong.datvemaybay.notify.XemActivity;
 import com.vuvanduong.datvemaybay.object.ChuyenBay;
 import com.vuvanduong.datvemaybay.object.SanBay;
 
@@ -125,8 +124,8 @@ public class FlightActivity extends AppCompatActivity {
                         break;
 
                     case R.id.menu_notify:
-                        Intent menu_notify = new Intent(FlightActivity.this, XemActivity.class);
-                        startActivity(menu_notify);
+                        //Intent menu_notify = new Intent(FlightActivity.this, XemActivity.class);
+                        //startActivity(menu_notify);
                         break;
 
                     case R.id.menu_checkin:

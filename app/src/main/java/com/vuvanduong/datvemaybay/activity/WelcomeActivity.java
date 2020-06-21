@@ -17,7 +17,6 @@ import com.vuvanduong.datvemaybay.R;
 import com.vuvanduong.datvemaybay.app.InitialApp;
 import com.vuvanduong.datvemaybay.app.MyVolley;
 import com.vuvanduong.datvemaybay.config.Constant;
-import com.vuvanduong.datvemaybay.notify.NotifyService;
 
 import org.json.JSONObject;
 
@@ -30,7 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        startService(new Intent().setClass(this, NotifyService.class));
+        //startService(new Intent().setClass(this, NotifyService.class));
 
         HashMap<String, String> data = new HashMap<>();
         data.put("mave",String.valueOf(System.currentTimeMillis()).substring(7,13));

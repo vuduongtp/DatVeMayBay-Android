@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.vuvanduong.datvemaybay.R;
 import com.vuvanduong.datvemaybay.mail.ConfirmCodeActivity;
 import com.vuvanduong.datvemaybay.mail.GMailSender;
-import com.vuvanduong.datvemaybay.notify.NotifyService;
 import com.vuvanduong.datvemaybay.object.Ve;
 
 import java.util.ArrayList;

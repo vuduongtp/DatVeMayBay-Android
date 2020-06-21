@@ -61,6 +61,8 @@
     <string name="last_name">Last name:</string>
     <string name="ID_code">ID Code:</string>
     <string name="email">Email:</string>
+    <string name="language">Language</string>
+    <string name="select_language">Select Language</string>
 
 
     <string name="english" translatable="false">English</string>

@@ -1,10 +1,11 @@
 package com.vuvanduong.datvemaybay.app;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 
 import com.vuvanduong.datvemaybay.activity.WelcomeActivity;
-import com.vuvanduong.datvemaybay.mail.GMailSender;
+import com.vuvanduong.datvemaybay.config.LocaleHelper;
 
 public class InitialApp extends Application {
 
@@ -22,9 +23,12 @@ public class InitialApp extends Application {
 
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base, "en"));
+    }
 
-
-    public void init() {
+        public void init() {
         System.out.println("Chay vo day");
         MyVolley.init(this);
     }

@@ -33,10 +33,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.google.android.material.navigation.NavigationView;
 import com.vuvanduong.datvemaybay.R;
-import com.vuvanduong.datvemaybay.app.InitialApp;
 import com.vuvanduong.datvemaybay.app.MyVolley;
 import com.vuvanduong.datvemaybay.config.Constant;
-import com.vuvanduong.datvemaybay.notify.XemActivity;
 import com.vuvanduong.datvemaybay.object.ChuyenBay;
 import com.vuvanduong.datvemaybay.object.SanBay;
 
@@ -105,8 +103,8 @@ public class BookingActivity extends AppCompatActivity {
                         break;
 
                     case R.id.menu_notify:
-                        Intent menu_notify = new Intent(BookingActivity.this, XemActivity.class);
-                        startActivity(menu_notify);
+                       // Intent menu_notify = new Intent(BookingActivity.this, XemActivity.class);
+                        //startActivity(menu_notify);
                         break;
 
                     case R.id.menu_checkin:
