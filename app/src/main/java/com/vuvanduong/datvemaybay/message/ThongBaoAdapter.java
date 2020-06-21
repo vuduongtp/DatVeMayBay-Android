@@ -1,4 +1,4 @@
-package com.vuvanduong.datvemaybay.notify;
+package com.vuvanduong.datvemaybay.message;
 
 import android.app.Activity;
 import android.view.LayoutInflater;

@@ -14,4 +14,6 @@ public class Constant {
     public static final int LIMIT_ADULT = 3;
     public static final int LIMIT_CHILDREN = 2;
     public static final int LIMIT_BABY = 2;
+
+    public static final String LANGUAGE_CODE = "language";
 }

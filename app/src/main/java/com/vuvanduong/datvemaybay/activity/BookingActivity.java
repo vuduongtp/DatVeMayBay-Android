@@ -35,8 +35,10 @@ import com.google.android.material.navigation.NavigationView;
 import com.vuvanduong.datvemaybay.R;
 import com.vuvanduong.datvemaybay.app.MyVolley;
 import com.vuvanduong.datvemaybay.config.Constant;
+import com.vuvanduong.datvemaybay.message.XemActivity;
 import com.vuvanduong.datvemaybay.object.ChuyenBay;
 import com.vuvanduong.datvemaybay.object.SanBay;
+import com.vuvanduong.datvemaybay.view.DialogLanguage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -103,8 +105,8 @@ public class BookingActivity extends AppCompatActivity {
                         break;
 
                     case R.id.menu_notify:
-                       // Intent menu_notify = new Intent(BookingActivity.this, XemActivity.class);
-                        //startActivity(menu_notify);
+                        Intent menu_notify = new Intent(BookingActivity.this, XemActivity.class);
+                        startActivity(menu_notify);
                         break;
 
                     case R.id.menu_checkin:
@@ -117,6 +119,11 @@ public class BookingActivity extends AppCompatActivity {
                         Intent menu_my_trip = new Intent(BookingActivity.this, FlightActivity.class);
                         startActivity(menu_my_trip);
                         finish();
+                        break;
+
+                    case R.id.menu_language:
+                        DialogLanguage cdd=new DialogLanguage(BookingActivity.this);
+                        cdd.show();
                         break;
                 }
                 return true;
@@ -492,6 +499,10 @@ public class BookingActivity extends AppCompatActivity {
                         new Response.Listener<JSONArray>() {
                             @Override
                             public void onResponse(JSONArray response) {
+                                if(response.length()==0){
+                                    Toast.makeText(BookingActivity.this, "Không tìm thấy vé.", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                }
                                 for (int i = 0; i < response.length(); i++) {
                                     try {
                                         JSONObject jsonObject = response.getJSONObject(i);

@@ -123,6 +123,10 @@ public class FragmentSelectFlightGo extends Fragment {
                                 new Response.Listener<JSONArray>() {
                                     @Override
                                     public void onResponse(JSONArray response) {
+                                        if(response.length()==0){
+                                            Toast.makeText(getActivity(), "Không tìm thấy vé.", Toast.LENGTH_SHORT).show();
+                                            dialog.dismiss();
+                                        }
                                         // Do something with response
                                         //mTextView.setText(response.toString());
 

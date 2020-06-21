@@ -11,18 +11,25 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.vuvanduong.datvemaybay.R;
-import com.vuvanduong.datvemaybay.config.LocaleHelper;
+import com.vuvanduong.datvemaybay.config.Constant;
+import com.vuvanduong.datvemaybay.config.SharedPrefs;
+import com.vuvanduong.datvemaybay.message.XemActivity;
 import com.vuvanduong.datvemaybay.view.DialogLanguage;
 import com.vuvanduong.datvemaybay.view.FragmentFamousPlace;
+
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Toolbar toolbar;
     Button btnSearchFlight;
+    boolean isFirstLoad=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         addControl();
         addEvent();
-    }
 
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LocaleHelper.onAttach(base, PreferenceManager.getDefaultSharedPreferences(base).getString(LocaleHelper.SELECTED_LANGUAGE, "vi")));
     }
 
 
@@ -63,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.menu_notify:
-                        //Intent menu_notify = new Intent(MainActivity.this, XemActivity.class);
-                        //startActivity(menu_notify);
+                        Intent menu_notify = new Intent(MainActivity.this, XemActivity.class);
+                        startActivity(menu_notify);
                         break;
 
                     case R.id.menu_checkin:

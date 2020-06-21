@@ -58,4 +58,8 @@
     <string name="last_name">Tên:</string>
     <string name="ID_code">Chứng minh nhân dân:</string>
     <string name="email">Địa chỉ Email:</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="select_language">Chọn ngôn ngữ</string>
+    <string name="alert_select_language">Hãy chọn ngôn ngữ của bạn.</string>
+    <string name="success_language">Chuyển đổi ngôn ngữ thành công.</string>
 </resources>

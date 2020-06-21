@@ -1,9 +1,9 @@
-package com.vuvanduong.datvemaybay.notify;
+package com.vuvanduong.datvemaybay.message;
 
 import java.io.Serializable;
 
 public class ThongBao implements Serializable {
-    long Id;
+    String Id;
     String TieuDe;
     String NoiDung;
     String NgayBatDau;
@@ -12,7 +12,7 @@ public class ThongBao implements Serializable {
     public ThongBao() {
     }
 
-    public ThongBao(long id, String tieuDe, String noiDung, String ngayBatDau, String status) {
+    public ThongBao(String id, String tieuDe, String noiDung, String ngayBatDau, String status) {
         Id = id;
         TieuDe = tieuDe;
         NoiDung = noiDung;
@@ -20,11 +20,11 @@ public class ThongBao implements Serializable {
         Status = status;
     }
 
-    public long getId() {
+    public String getId() {
         return Id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         Id = id;
     }
 

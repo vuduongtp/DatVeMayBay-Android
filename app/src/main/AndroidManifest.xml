@@ -13,13 +13,24 @@
         android:roundIcon="@drawable/airplane"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mail.ConfirmCodeActivity"></activity>
-        <activity android:name=".notify.NoiDungActivity" />
-        <activity android:name=".notify.XemActivity" />
+        <activity android:name=".mail.ConfirmCodeActivity" />
 
         <service
-            android:name=".notify.NotifyService"
-            android:label="@string/app_name" />
+            android:name=".message.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".message.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <activity android:name=".message.NoiDungActivity" />
+        <activity android:name=".message.XemActivity" />
 
         <activity android:name=".activity.BookingSucessActivity" />
         <activity android:name=".activity.GetUserInfoActivity" />

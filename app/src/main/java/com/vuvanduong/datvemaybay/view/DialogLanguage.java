@@ -3,9 +3,7 @@ package com.vuvanduong.datvemaybay.view;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -16,7 +14,8 @@ import android.widget.Toast;
 
 import com.vuvanduong.datvemaybay.R;
 import com.vuvanduong.datvemaybay.activity.MainActivity;
-import com.vuvanduong.datvemaybay.config.LocaleHelper;
+import com.vuvanduong.datvemaybay.config.Constant;
+import com.vuvanduong.datvemaybay.config.SharedPrefs;
 
 import java.util.Locale;
 
@@ -26,7 +25,7 @@ public class DialogLanguage extends Dialog implements
     public Activity c;
     public RadioButton vn, en;
     Button cancel,save;
-    String locale= "";
+    String locale= "",country="";
 
     public DialogLanguage(Activity a) {
         super(a);
@@ -54,41 +53,43 @@ public class DialogLanguage extends Dialog implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rbtnVN:
-                Toast.makeText(c, "VN", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(c, "VN", Toast.LENGTH_SHORT).show();
                 locale="vi";
+                country="VN";
                 break;
             case R.id.rbtnEN:
-                Toast.makeText(c, "EN", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(c, "EN", Toast.LENGTH_SHORT).show();
                 locale="en";
+                country="EN";
                 break;
             case R.id.btnDialogCancel:
                 dismiss();
                 break;
             case R.id.btnDialogOK:
-                LocaleHelper.onAttach(c, locale);
-
-                Intent refresh = new Intent(c, MainActivity.class);
-                c.finish();
-                c.startActivity(refresh);
-                Toast.makeText(c, "lang "+locale, Toast.LENGTH_SHORT).show();
-                dismiss();
+                if(locale.equalsIgnoreCase("")){
+                    Toast.makeText(c, R.string.alert_select_language, Toast.LENGTH_SHORT).show();
+                }else {
+                    setLanguage(locale);
+                    SharedPrefs.getInstance().clear();
+                    SharedPrefs.getInstance().put(Constant.LANGUAGE_CODE, locale);
+                    Intent refresh = new Intent(c, MainActivity.class);
+                    c.finish();
+                    c.startActivity(refresh);
+                    Toast.makeText(c, R.string.success_language, Toast.LENGTH_SHORT).show();
+                    dismiss();
+                }
                 break;
             default:
                 break;
         }
     }
-
- //   private void setLocale(String local){
-//        Locale locale = new Locale(local);
-//        Locale.setDefault(locale);
-//        Configuration config = c.getBaseContext().getResources().getConfiguration();
-//        config.locale = locale;
-//        Locale.setDefault(locale);
-//        config.setLocale(locale);
-//        Toast.makeText(c, "set ok "+local, Toast.LENGTH_SHORT).show();
-//        c.getBaseContext().getResources().updateConfiguration(config,
-//                c.getBaseContext().getResources().getDisplayMetrics());
- //   }
-
-
+    private void setLanguage(String local)  {
+        Resources res = c.getResources();
+        // Change locale settings in the app.
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(local.toLowerCase(),country)); // API 17+ only.
+        // Use conf.locale = new Locale(...) if targeting lower versions
+        res.updateConfiguration(conf, dm);
+    }
 }

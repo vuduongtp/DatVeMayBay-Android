@@ -32,8 +32,10 @@ import com.vuvanduong.datvemaybay.R;
 import com.vuvanduong.datvemaybay.adapter.TicketAdapter;
 import com.vuvanduong.datvemaybay.app.MyVolley;
 import com.vuvanduong.datvemaybay.config.Constant;
+import com.vuvanduong.datvemaybay.message.XemActivity;
 import com.vuvanduong.datvemaybay.object.ChuyenBay;
 import com.vuvanduong.datvemaybay.object.Ve;
+import com.vuvanduong.datvemaybay.view.DialogLanguage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -116,8 +118,8 @@ public class CheckInActivity extends AppCompatActivity {
                         break;
 
                     case R.id.menu_notify:
-                        //Intent menu_notify = new Intent(CheckInActivity.this, XemActivity.class);
-                        //startActivity(menu_notify);
+                        Intent menu_notify = new Intent(CheckInActivity.this, XemActivity.class);
+                        startActivity(menu_notify);
                         finish();
                         break;
 
@@ -130,6 +132,11 @@ public class CheckInActivity extends AppCompatActivity {
                         Intent menu_my_trip = new Intent(CheckInActivity.this, FlightActivity.class);
                         startActivity(menu_my_trip);
                         finish();
+                        break;
+
+                    case R.id.menu_language:
+                        DialogLanguage cdd=new DialogLanguage(CheckInActivity.this);
+                        cdd.show();
                         break;
                 }
                 return true;
@@ -181,6 +188,10 @@ public class CheckInActivity extends AppCompatActivity {
                             new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
+                                    if(response.length()==0){
+                                        Toast.makeText(CheckInActivity.this, "Không tìm thấy vé.", Toast.LENGTH_SHORT).show();
+                                        dialog.dismiss();
+                                    }
                                     try {
                                         if (response.has("mave")) {
                                             ve.setMaVe(response.getString("mave"));
@@ -229,6 +240,7 @@ public class CheckInActivity extends AppCompatActivity {
                                 public void onErrorResponse(VolleyError error) {
                                     // Do something when error occurred
                                     Toast.makeText(CheckInActivity.this, "Không tìm thấy vé có mã " + mave + ".", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
 
                                 }
                             }

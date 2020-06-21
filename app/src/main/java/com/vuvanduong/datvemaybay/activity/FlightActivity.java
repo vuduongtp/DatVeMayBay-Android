@@ -21,6 +21,7 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -33,8 +34,10 @@ import com.vuvanduong.datvemaybay.R;
 import com.vuvanduong.datvemaybay.adapter.FlightAdapter;
 import com.vuvanduong.datvemaybay.app.MyVolley;
 import com.vuvanduong.datvemaybay.config.Constant;
+import com.vuvanduong.datvemaybay.message.XemActivity;
 import com.vuvanduong.datvemaybay.object.ChuyenBay;
 import com.vuvanduong.datvemaybay.object.SanBay;
+import com.vuvanduong.datvemaybay.view.DialogLanguage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -124,8 +127,8 @@ public class FlightActivity extends AppCompatActivity {
                         break;
 
                     case R.id.menu_notify:
-                        //Intent menu_notify = new Intent(FlightActivity.this, XemActivity.class);
-                        //startActivity(menu_notify);
+                        Intent menu_notify = new Intent(FlightActivity.this, XemActivity.class);
+                        startActivity(menu_notify);
                         break;
 
                     case R.id.menu_checkin:
@@ -138,6 +141,11 @@ public class FlightActivity extends AppCompatActivity {
                         Intent menu_my_trip = new Intent(FlightActivity.this, FlightActivity.class);
                         startActivity(menu_my_trip);
                         finish();
+                        break;
+
+                    case R.id.menu_language:
+                        DialogLanguage cdd=new DialogLanguage(FlightActivity.this);
+                        cdd.show();
                         break;
                 }
                 return true;
@@ -200,6 +208,10 @@ public class FlightActivity extends AppCompatActivity {
                         new Response.Listener<JSONArray>() {
                             @Override
                             public void onResponse(JSONArray response) {
+                                if(response.length()==0){
+                                    Toast.makeText(FlightActivity.this, "Không tìm thấy chuyến bay.", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                }
 
                                 try{
                                     // Loop through the array elements
