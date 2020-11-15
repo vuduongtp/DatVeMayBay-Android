@@ -70,7 +70,7 @@ public class ConfirmCodeActivity extends AppCompatActivity {
                             for (int i = 0; i < soLuong; i++) {
                                 HashMap<String, String> data = new HashMap<>();
                                 data.put("cmnd", CMND);
-                                data.put("thanhtien", String.valueOf(990000*soLuong));
+                                data.put("thanhtien", String.valueOf(1500000*soLuong));
                                 data.put("macb", maChuyenBayDi);
                                 String url = Constant.DOMAIN_NAME + "api/ve/ticket-booking";
 
@@ -147,7 +147,7 @@ public class ConfirmCodeActivity extends AppCompatActivity {
                                 //System.out.println("chay vo day chua");
                                 HashMap<String, String> data = new HashMap<>();
                                 data.put("cmnd", CMND);
-                                data.put("thanhtien", String.valueOf(990000*soLuong*2));
+                                data.put("thanhtien", String.valueOf(1500000*soLuong*2));
                                 data.put("macb", maChuyenBayDi);
                                 String url = Constant.DOMAIN_NAME + "api/ve/ticket-booking";
 
@@ -216,7 +216,7 @@ public class ConfirmCodeActivity extends AppCompatActivity {
 
                                 HashMap<String, String> data1 = new HashMap<>();
                                 data1.put("cmnd", CMND);
-                                data1.put("thanhtien", String.valueOf(990000*soLuong*2));
+                                data1.put("thanhtien", String.valueOf(1500000*soLuong*2));
                                 data1.put("macb", maChuyenBayVe);
 
                                 JsonObjectRequest jsonobj1 = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(data1),
